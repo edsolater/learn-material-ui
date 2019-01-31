@@ -42,9 +42,11 @@ const useStyles = makeStyles(theme => ({
       backgroundColor: fade(theme.palette.common.white, 0.25),
     },
     marginRight: theme.spacing.unit * 2,
-    marginLeft: 0,
+    marginLeft: theme.spacing.unit * 2,
     width: 'auto',
-    
+    [theme.breakpoints.up('md')]: {
+      width: '50%',
+    }
   },
   searchIcon: {
     width: theme.spacing.unit * 9,
@@ -73,15 +75,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // 2 links: BoardLink, DetailLink
-export function NavigatorUI(props) {
+export function MyAppBar() {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
-  // 2 links: BoardLink, DetailLink
-  const { DetailLink, BoardLink } = props.links || {}
 
   function handleProfileMenuOpen(event) {
     setAnchorEl(event.currentTarget)
@@ -137,7 +137,7 @@ export function NavigatorUI(props) {
               <SearchIcon />
             </div>
             <InputBase
-              placeholder="Searchâ¦"
+              placeholder="Search"
               classes={{
                 root: classes.inputRoot,
                 input: classes.inputInput,
@@ -146,7 +146,7 @@ export function NavigatorUI(props) {
           </div>
           <div className={classes.grow} />
           <div className={classes.iconButtons}>
-            <IconButton color="inherit" component={BoardLink}>
+            <IconButton color="inherit">
               <Badge badgeContent={4} color="secondary">
                 <HomeIcon />
               </Badge>
