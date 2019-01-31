@@ -72,16 +72,16 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-// 2 links: ToHome, ToDetail
-export function NavigatorPage(props) {
+// 2 links: BoardLink, DetailLink
+export function NavigatorUI(props) {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
   const isMenuOpen = Boolean(anchorEl)
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
-  // 2 links: ToHome, ToDetail
-  const { ToDetail, ToHome } = props.links || {}
+  // 2 links: BoardLink, DetailLink
+  const { DetailLink, BoardLink } = props.links || {}
 
   function handleProfileMenuOpen(event) {
     setAnchorEl(event.currentTarget)
@@ -146,7 +146,7 @@ export function NavigatorPage(props) {
           </div>
           <div className={classes.grow} />
           <div className={classes.iconButtons}>
-            <IconButton color="inherit" component={ToHome}>
+            <IconButton color="inherit" component={BoardLink}>
               <Badge badgeContent={4} color="secondary">
                 <HomeIcon />
               </Badge>
