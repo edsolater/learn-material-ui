@@ -5,7 +5,7 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import './bootstrap'
 
 import GlobalTheme from './GlobalTheme'
-import { NavigatorNode as Entrance } from './nodes-map'
+import { NavigatorMap as Entrance } from './nodes-map'
 
 ReactDOM.render(
   <Router>

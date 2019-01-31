@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export function DetailPage() {
+export function DetailUI() {
   const classes = useStyles()
   const [expanded, setExpanded] = React.useState(false)
 
@@ -126,4 +126,4 @@ export function DetailPage() {
   )
 }
 
-export const ToDetail = props => <RouteLink to="/detail" {...props} />
+export const DetailLink = props => <RouteLink to="/detail" {...props} />

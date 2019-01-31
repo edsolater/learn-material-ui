@@ -1,38 +1,41 @@
 import React from 'react'
 import { ThemeProvider } from '@material-ui/styles'
 import { createMuiTheme } from '@material-ui/core/styles'
-import {  grey, amber } from '@material-ui/core/colors'
+import { grey, amber } from '@material-ui/core/colors'
+
+const defaultSpacing = 8
 
 const theme = createMuiTheme({
   palette: {
     type: 'dark',
     background: {
       // default: '#222',
-      paper: '#3e3e3e',
+      paper: 'rgba(255, 255, 255, 0.02)'
     },
     primary: {
-      main: grey[900],
+      main: grey[900]
     },
     secondary: {
-      main: amber['A400'],
+      main: amber['A400']
     },
     text: {
-      primary: '#eee',
-    },
+      primary: '#eee'
+    }
   },
   typography: { useNextVariants: true },
   overrides: {
     MuiPaper: {
       root: {
-        marginBottom: '1rem',
-      },
+        padding: defaultSpacing,
+        marginBottom: '1rem'
+      }
     },
     MuiCard: {
       root: {
-        marginBottom: '1rem',
-      },
-    },
-  },
+        marginBottom: '1rem'
+      }
+    }
+  }
   // overrides: {
   //   // Name of the component ⚛️ / style sheet
   //   MuiButton: {
