@@ -6,7 +6,7 @@ import {
   Categories,
   Shelf,
   CompareBoard,
-  UserCart
+  UserCart,
 } from './MiniShop-fragment'
 
 const useStyles = makeStyles(theme =>
@@ -14,23 +14,23 @@ const useStyles = makeStyles(theme =>
   ({
     ['spacebox-below-appbar']: {
       // 需要获取appbar的高度，动态地设定值
-      height: theme.spacing.unit * 10
+      height: theme.spacing.unit * 10,
     },
     flexbox: {
       display: 'flex',
       position: 'relative',
-      width: '100%'
+      width: '100%',
     },
     shelf: {
-      flex: '1'
+      flex: '1',
     },
     ['spacebox-in-flexbox']: {
-      width: theme.spacing.gutter
+      width: theme.spacing.gutter,
     },
     CompareBoard: {
-      flex: '1'
-    }
-  })
+      flex: '1',
+    },
+  }),
 )
 
 // container component
@@ -48,7 +48,7 @@ export default function MiniShop() {
         className={classes.appbar}
         toggler={{
           toggleFavorites,
-          toggleUserCart
+          toggleUserCart,
         }}
         appbarPosition="fixed"
       />
@@ -57,13 +57,16 @@ export default function MiniShop() {
       <Categories
         toggler={{
           toggleCompareBoard,
-          toggleShelf
+          toggleShelf,
         }}
       />
       <div role="flexbox" className={classes.flexbox}>
         <Shelf className={classes.shelf} state={{ hasShelf }} />
         <div role="spacebox" className={classes['spacebox-in-flexbox']} />
-        <CompareBoard className={classes.CompareBoard} state={{ hasCompareBoard }} />
+        <CompareBoard
+          className={classes.CompareBoard}
+          state={{ hasCompareBoard }}
+        />
       </div>
       <UserCart state={{ hasUserCart }} />
     </React.Fragment>

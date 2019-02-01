@@ -1,8 +1,9 @@
 /* 'defaultSpacing=8px' in GlobalTheme.js  */
 :root {
-    background: #333;
+  background: #333;
   padding: 24px;
   margin: 0;
+  scrollbar-width: none;
 }
 body {
   padding: 0;
