@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
 export function UserCart({state:{hasUserCart}}) {
   const classes = useStyles()
   return (
-    <Drawer anchor="top" open={hasUserCart}>
+    <Drawer anchor="bottom" open={hasUserCart}>
       <div>
         <List>
           <ListItem botton>

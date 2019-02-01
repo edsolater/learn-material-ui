@@ -8,44 +8,45 @@ import {
   InputBase,
   Badge,
   Menu,
-  MenuItem,
+  MenuItem
 } from '@material-ui/core'
 import { fade } from '@material-ui/core/styles/colorManipulator'
 import {
   Home as HomeIcon,
   Search as SearchIcon,
-  Menu as MenuIcon,
+  Menu as MenuIcon
 } from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   root: {
     width: '100%',
+
   },
   grow: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
     marginLeft: -12,
-    marginRight: 20,
+    marginRight: 20
   },
   title: {
     display: 'none',
     [theme.breakpoints.up('sm')]: {
-      display: 'block',
-    },
+      display: 'block'
+    }
   },
   search: {
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: fade(theme.palette.common.white, 0.15),
     '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
+      backgroundColor: fade(theme.palette.common.white, 0.25)
     },
     marginRight: theme.spacing.unit * 2,
     marginLeft: theme.spacing.unit * 2,
     width: 'auto',
     [theme.breakpoints.up('md')]: {
-      width: '50%',
+      width: '50%'
     }
   },
   searchIcon: {
@@ -55,11 +56,11 @@ const useStyles = makeStyles(theme => ({
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   inputRoot: {
     color: 'inherit',
-    width: '100%',
+    width: '100%'
   },
   inputInput: {
     paddingTop: theme.spacing.unit,
@@ -69,13 +70,17 @@ const useStyles = makeStyles(theme => ({
     transition: theme.transitions.create('width'),
     width: '100%',
     [theme.breakpoints.up('md')]: {
-      width: 200,
-    },
-  },
+      width: 200
+    }
+  }
 }))
 
 // 2 links: CategoriesLink, ShelfLink
-export function MyAppBar() {
+export function MyAppBar({
+  toggler: { toggleFavorites, toggleUserCart } = {},
+  state: { hasFavorites, hasUserCart } = {},
+  appbarPosition = 'fixed',
+}) {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
@@ -115,7 +120,7 @@ export function MyAppBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position={appbarPosition}>
         <Toolbar>
           <IconButton
             className={classes.menuButton}
@@ -140,13 +145,13 @@ export function MyAppBar() {
               placeholder="Search"
               classes={{
                 root: classes.inputRoot,
-                input: classes.inputInput,
+                input: classes.inputInput
               }}
             />
           </div>
           <div className={classes.grow} />
           <div className={classes.iconButtons}>
-            <IconButton color="inherit">
+            <IconButton color="inherit" onClick={toggleFavorites}>
               <Badge badgeContent={4} color="secondary">
                 <HomeIcon />
               </Badge>

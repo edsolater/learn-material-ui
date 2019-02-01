@@ -10,7 +10,7 @@ const theme = createMuiTheme({
     type: 'dark',
     background: {
       // default: '#222',
-      paper: 'rgba(255, 255, 255, 0.02)'
+      paper: '#353535'
     },
     primary: {
       main: grey[900]
@@ -22,17 +22,23 @@ const theme = createMuiTheme({
       primary: '#eee'
     }
   },
+  spacing: {
+    unit: defaultSpacing,
+    gutter: defaultSpacing * 3
+  },
   typography: { useNextVariants: true },
   overrides: {
     MuiPaper: {
       root: {
+        background: '#353535',
         padding: defaultSpacing,
-        marginBottom: '1rem'
+        marginBottom: defaultSpacing * 3
       }
     },
     MuiCard: {
       root: {
-        marginBottom: '1rem'
+        background: 'rgba(255, 255, 255, 0.1)',
+        marginBottom: defaultSpacing
       }
     }
   }

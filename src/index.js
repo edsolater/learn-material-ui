@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import './bootstrap'
+import './html-body.css'
+import './bootstrap-Material-UI'
+import './bootstrap-React'
 
 import GlobalTheme from './GlobalTheme'
 import MiniShop from './pages/MiniShop'

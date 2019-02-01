@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // 0 links
-export function Categories({toggler:{toggleComparison, toggleShelf}}) {
+export function Categories({toggler:{toggleCompareBoard, toggleShelf}}) {
   const classes = useStyles()
   return (
     <Paper className={classes.paper}>
@@ -26,7 +26,7 @@ export function Categories({toggler:{toggleComparison, toggleShelf}}) {
           </IconButton>
         </Grid>
         <Grid item container xs={4} lg={2} justify="center">
-          <IconButton onClick={toggleComparison}>
+          <IconButton onClick={toggleCompareBoard}>
             <Avatar className={classes.avatarButton}>I</Avatar>
           </IconButton>
         </Grid>

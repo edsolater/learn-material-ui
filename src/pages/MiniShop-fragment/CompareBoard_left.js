@@ -10,50 +10,49 @@ import {
   Collapse,
   Avatar,
   IconButton,
-  Typography,
+  Typography
 } from '@material-ui/core'
 import {
   Favorite as FavoriteIcon,
   Share as ShareIcon,
   ExpandMore as ExpandMoreIcon,
-  MoreVert as MoreVertIcon,
+  MoreVert as MoreVertIcon
 } from '@material-ui/icons'
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 400,
+    maxWidth: 400
   },
   media: {
     height: 0,
-    paddingTop: '56.25%', // 16:9
+    paddingTop: '56.25%' // 16:9
   },
   actions: {
-    display: 'flex',
+    display: 'flex'
   },
   expand: {
     transform: 'rotate(0deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
-      duration: theme.transitions.duration.shortest,
-    }),
+      duration: theme.transitions.duration.shortest
+    })
   },
   expandOpen: {
-    transform: 'rotate(180deg)',
+    transform: 'rotate(180deg)'
   },
   avatar: {
-    backgroundColor: theme.palette.secondary.main,
-  },
+    backgroundColor: theme.palette.secondary.main
+  }
 }))
 
-export function Comparison() {
+export default function ShelfS() {
   const classes = useStyles()
   const [expanded, setExpanded] = React.useState(false)
 
   function handleExpandClick() {
     setExpanded(!expanded)
   }
-
-  return (
+  const card = (
     <Card className={classes.card}>
       <CardHeader
         avatar={
@@ -66,7 +65,7 @@ export function Comparison() {
             <MoreVertIcon />
           </IconButton>
         }
-        title="Shrimp and Chorizo Paella"
+        title="Compare-card-1"
         subheader="September 14, 2016"
       />
       <CardMedia
@@ -90,7 +89,7 @@ export function Comparison() {
         </IconButton>
         <IconButton
           className={classnames(classes.expand, {
-            [classes.expandOpen]: expanded,
+            [classes.expandOpen]: expanded
           })}
           onClick={handleExpandClick}
           aria-expanded={expanded}
@@ -132,4 +131,5 @@ export function Comparison() {
       </Collapse>
     </Card>
   )
+  return card
 }
