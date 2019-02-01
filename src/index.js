@@ -4,11 +4,11 @@ import ReactDOM from 'react-dom'
 import './bootstrap'
 
 import GlobalTheme from './GlobalTheme'
-import Shop from './pages/Shop'
+import MiniShop from './pages/MiniShop'
 
 ReactDOM.render(
   <GlobalTheme>
-    <Shop />
+    <MiniShop />
   </GlobalTheme>,
   document.getElementById('root'),
 )

@@ -15,18 +15,18 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // 0 links
-export function Board({togglers:{toggleHasComparison, toggleHasDetail}}) {
+export function Categories({toggler:{toggleComparison, toggleShelf}}) {
   const classes = useStyles()
   return (
     <Paper className={classes.paper}>
       <Grid container spacing={24}>
         <Grid item container xs={4} lg={2} justify="center">
-          <IconButton onClick={toggleHasDetail}>
+          <IconButton onClick={toggleShelf}>
             <Avatar className={classes.avatarButton}>S</Avatar>
           </IconButton>
         </Grid>
         <Grid item container xs={4} lg={2} justify="center">
-          <IconButton onClick={toggleHasComparison}>
+          <IconButton onClick={toggleComparison}>
             <Avatar className={classes.avatarButton}>I</Avatar>
           </IconButton>
         </Grid>

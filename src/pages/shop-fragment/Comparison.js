@@ -45,7 +45,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function DetailS() {
+export function Comparison() {
   const classes = useStyles()
   const [expanded, setExpanded] = React.useState(false)
 

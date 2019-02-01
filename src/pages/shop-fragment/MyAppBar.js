@@ -74,7 +74,7 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-// 2 links: BoardLink, DetailLink
+// 2 links: CategoriesLink, ShelfLink
 export function MyAppBar() {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
