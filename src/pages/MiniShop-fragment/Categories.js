@@ -2,7 +2,6 @@ import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import { Paper, Grid, IconButton, Avatar } from '@material-ui/core'
 
-// direct styles in Home Page
 const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing.unit
@@ -14,44 +13,27 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// 0 links
-export function Categories({toggler:{toggleCompareBoard, toggleShelf}}) {
+// 未来TODO：要把名字都集中到顶层的统一配置中
+export function Categories({
+  myProps: {
+    computed: { symbols }
+  },
+  dispatchers: {
+    enum: { changeCurrentSymbol }
+  }
+}) {
   const classes = useStyles()
   return (
     <Paper className={classes.paper}>
       <Grid container spacing={24}>
-        <Grid item container xs={4} lg={2} justify="center">
-          <IconButton onClick={toggleShelf}>
-            <Avatar className={classes.avatarButton}>S</Avatar>
-          </IconButton>
-        </Grid>
-        <Grid item container xs={4} lg={2} justify="center">
-          <IconButton onClick={toggleCompareBoard}>
-            <Avatar className={classes.avatarButton}>I</Avatar>
-          </IconButton>
-        </Grid>
-        <Grid item container xs={4} lg={2} justify="center">
-          <IconButton>
-            <Avatar className={classes.avatarButton}>M</Avatar>
-          </IconButton>
-        </Grid>
-        <Grid item container xs={4} lg={2} justify="center">
-          <IconButton>
-            <Avatar className={classes.avatarButton}>P</Avatar>
-          </IconButton>
-        </Grid>
-        <Grid item container xs={4} lg={2} justify="center">
-          <IconButton>
-            <Avatar className={classes.avatarButton}>L</Avatar>
-          </IconButton>
-        </Grid>
-        <Grid item container xs={4} lg={2} justify="center">
-          <IconButton>
-            <Avatar className={classes.avatarButton}>E</Avatar>
-          </IconButton>
-        </Grid>
+        {symbols.map(symbol => (
+          <Grid item container xs={4} lg={2} justify="center">
+            <IconButton onClick={() => changeCurrentSymbol(symbol)}>
+              <Avatar className={classes.avatarButton}>{symbol}</Avatar>
+            </IconButton>
+          </Grid>
+        ))}
       </Grid>
     </Paper>
   )
 }
-

@@ -12,9 +12,10 @@ import {
 } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
-  card: {
+  root: {
     display: 'inline-flex',
     padding: 0,
+    height: theme.spacing.unit * 8
   },
   detail: {
     display: 'flex',
@@ -26,10 +27,10 @@ const useStyles = makeStyles(theme => ({
   },
 }))
 
-export default function ShelfS() {
+export default function Template() {
   const classes = useStyles()
   return (
-    <Card className={classes.card}>
+    <Card className={classes.root}>
       <div className={classes.detail}>
         <CardContent>
           <Typography gutterBottom variant="h5" component="h5">

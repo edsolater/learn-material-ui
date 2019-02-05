@@ -17,8 +17,12 @@ const useStyles = makeStyles(theme => ({
 
 // 0 links
 export function Favorites({
-  state: { hasFavorites },
-  toggler: { toggleFavorites }
+  myProps: {
+    boolean: { hasFavorites }
+  },
+  dispatchers: {
+    boolean: { toggleFavorites }
+  }
 }) {
   const classes = useStyles()
   return (
@@ -27,14 +31,14 @@ export function Favorites({
       anchor="top"
       open={hasFavorites}
       onClose={toggleFavorites}
-      style={{background: 'rgba(0,0,0,0)'}}
+      style={{ background: 'rgba(0,0,0,0)' }}
     >
-    <Paper className={classes.paper}>
-      <List>
-        <ListItem botton>
-          <ListItemText>hello</ListItemText>
-        </ListItem>
-      </List>
+      <Paper className={classes.paper}>
+        <List>
+          <ListItem botton>
+            <ListItemText>hello</ListItemText>
+          </ListItem>
+        </List>
       </Paper>
     </Drawer>
   )

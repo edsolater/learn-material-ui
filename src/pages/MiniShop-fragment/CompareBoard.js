@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export function CompareBoard({ state: { hasCompareBoard } }) {
+export function CompareBoard() {
   const classes = useStyles()
-  return <BaseBoard>{hasCompareBoard && <DetailCard />}</BaseBoard>
+  return <BaseBoard><DetailCard /></BaseBoard>
 }

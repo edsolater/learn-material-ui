@@ -19,8 +19,7 @@ import {
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
-
+    width: '100%'
   },
   grow: {
     flexGrow: 1
@@ -77,9 +76,10 @@ const useStyles = makeStyles(theme => ({
 
 // 2 links: CategoriesLink, ShelfLink
 export function MyAppBar({
-  toggler: { toggleFavorites, toggleUserCart } = {},
-  state: { hasFavorites, hasUserCart } = {},
-  appbarPosition = 'fixed',
+  dispatchers: {
+    boolean: { toggleFavorites, toggleUserCart }
+  },
+  appbarPosition = 'fixed'
 }) {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)

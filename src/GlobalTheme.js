@@ -38,6 +38,7 @@ const theme = createMuiTheme({
     MuiCard: {
       root: {
         background: 'rgba(255, 255, 255, 0.1)',
+        marginRight: defaultSpacing,
         marginBottom: defaultSpacing
       }
     }

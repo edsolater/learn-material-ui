@@ -16,7 +16,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // 0 links
-export function UserCart({state:{hasUserCart}}) {
+export function UserCart({
+  myProps: {
+    boolean: { hasUserCart }
+  }
+}) {
   const classes = useStyles()
   return (
     <Drawer anchor="bottom" open={hasUserCart}>
