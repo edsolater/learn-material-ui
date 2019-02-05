@@ -17,10 +17,10 @@ const useStyles = makeStyles(theme => ({
 
 // 0 links
 export function Favorites({
-  myProps: {
+  state: {
     boolean: { hasFavorites }
   },
-  dispatchers: {
+  setters: {
     boolean: { toggleFavorites }
   }
 }) {

@@ -15,10 +15,10 @@ const useStyles = makeStyles(theme => ({
 
 // 未来TODO：要把名字都集中到顶层的统一配置中
 export function Categories({
-  myProps: {
+  state: {
     computed: { symbols }
   },
-  dispatchers: {
+  setters: {
     enum: { changeCurrentSymbol }
   }
 }) {

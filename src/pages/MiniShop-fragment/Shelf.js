@@ -20,13 +20,13 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export function Shelf({
-  myProps: {
+  state: {
     collectionKey: {
       object: { currentSymbol }
     },
     original: { shelfCards }
   },
-  dispatchers: {
+  setters: {
     original: { setShelfCards }
   }
 }) {
@@ -35,11 +35,11 @@ export function Shelf({
     <div className={classes.columnFlexbox}>
       <Indicator enumState={{ currentSymbol }} />
       <AddButton
-        myProps={{
+        state={{
           collectionKey: { object: { currentSymbol } },
           original: { shelfCards }
         }}
-        dispatchers={{ original: { setShelfCards } }}
+        setters={{ original: { setShelfCards } }}
       />
       <div className={classes.goodsGridbox}>
         {shelfCards[currentSymbol].map(cardInfo => (

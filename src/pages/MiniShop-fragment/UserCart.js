@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
 
 // 0 links
 export function UserCart({
-  myProps: {
+  state: {
     boolean: { hasUserCart }
   }
 }) {

@@ -53,7 +53,7 @@ export default function MiniShop() {
         id="appbar"
         className={classes.appbar}
         appbarPosition="fixed"
-        dispatchers={{
+        setters={{
           boolean: {
             toggleFavorites,
             toggleUserCart
@@ -62,12 +62,12 @@ export default function MiniShop() {
       />
       <div role="spacebox" className={classes['spacebox-below-appbar']} />
       <Favorites
-        myProps={{ boolean: { hasFavorites } }}
-        dispatchers={{ boolean: { toggleFavorites } }}
+        state={{ boolean: { hasFavorites } }}
+        setters={{ boolean: { toggleFavorites } }}
       />
       <Categories
-        myProps={{ computed: { symbols } }}
-        dispatchers={{
+        state={{ computed: { symbols } }}
+        setters={{
           boolean: { toggleShelf },
           enum: { changeCurrentSymbol }
         }}
@@ -75,16 +75,16 @@ export default function MiniShop() {
       <div role="flexbox" className={classes.flexbox}>
         <Shelf
           className={classes.shelf}
-          myProps={{
+          state={{
             collectionKey: { object: { currentSymbol } },
             original: { shelfCards }
           }}
-          dispatchers={{ original: { setShelfCards } }}
+          setters={{ original: { setShelfCards } }}
         />
         <div role="spacebox" className={classes['spacebox-in-flexbox']} />
         <CompareBoard className={classes.CompareBoard} />
       </div>
-      <UserCart myProps={{ boolean: { hasUserCart } }} />
+      <UserCart state={{ boolean: { hasUserCart } }} />
     </>
   )
 }

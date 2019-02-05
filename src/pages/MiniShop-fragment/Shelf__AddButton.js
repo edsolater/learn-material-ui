@@ -13,13 +13,13 @@ const useStyles = makeStyles(theme => ({
 
 // 0 links
 export default function addButton({
-  myProps: {
+  state: {
     collectionKey: {
       object: { currentSymbol }
     },
     original: { shelfCards }
   },
-  dispatchers: {
+  setters: {
     original: { setShelfCards }
   }
 }) {
