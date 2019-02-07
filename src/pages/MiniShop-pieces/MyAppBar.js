@@ -77,7 +77,7 @@ const useStyles = makeStyles(theme => ({
 // 2 links: CategoriesLink, ShelfLink
 export function MyAppBar({
   setters: {
-    boolean: { toggleFavorites, toggleUserCart }
+    boolean: { toggleFavorites, toggleUserFavorites }
   },
   appbarPosition = 'fixed'
 }) {

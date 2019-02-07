@@ -6,8 +6,8 @@ import {
   Categories,
   Shelf,
   CompareBoard,
-  UserCart
-} from './MiniShop-fragment'
+  UserFavorites
+} from './MiniShop-pieces'
 
 const useStyles = makeStyles(theme => ({
   ['spacebox-below-appbar']: {
@@ -19,14 +19,8 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     width: '100%'
   },
-  shelf: {
-    flex: '1' //这个没有下沉到根元素，实际上是没有显示效果的
-  },
   ['spacebox-in-flexbox']: {
     width: theme.spacing.gutter
-  },
-  CompareBoard: {
-    flex: '1' //这个没有下沉到根元素，实际上是没有显示效果的
   }
 }))
 
@@ -34,9 +28,9 @@ const useStyles = makeStyles(theme => ({
 export default function MiniShop() {
   const classes = useStyles()
   const [hasShelf, toggleShelf] = React.useToggle(false)
-  const [hasUserCart, toggleUserCart] = React.useToggle(false)
+  const [hasUserFavorites, toggleUserFavorites] = React.useToggle(false)
   const [hasFavorites, toggleFavorites] = React.useToggle(false)
-  const [shelfCards, setShelfCards] = React.useState({
+  const [shelfItems, setShelfItems] = React.useState({
     S: [],
     I: [],
     M: [],
@@ -44,8 +38,10 @@ export default function MiniShop() {
     L: [],
     E: []
   })
-  const symbols = Object.keys(shelfCards)
+  const symbols = Object.keys(shelfItems)
   const [currentSymbol, changeCurrentSymbol] = React.useState(symbols[0])
+  const [specialPapers, setSpecialPapers] = React.useState([])
+  const [normalPapers, setNormalPapers] = React.useState([])
 
   return (
     <>
@@ -56,7 +52,7 @@ export default function MiniShop() {
         setters={{
           boolean: {
             toggleFavorites,
-            toggleUserCart
+            toggleUserFavorites
           }
         }}
       />
@@ -66,7 +62,7 @@ export default function MiniShop() {
         setters={{ boolean: { toggleFavorites } }}
       />
       <Categories
-        state={{ computed: { symbols } }}
+        state={{ collections: { symbols } }}
         setters={{
           boolean: { toggleShelf },
           enum: { changeCurrentSymbol }
@@ -76,15 +72,17 @@ export default function MiniShop() {
         <Shelf
           className={classes.shelf}
           state={{
-            collectionKey: { object: { currentSymbol } },
-            original: { shelfCards }
+            keys: { currentSymbol },
+            collections: { shelfItems }
           }}
-          setters={{ original: { setShelfCards } }}
+          setters={{
+            collections: { setShelfItems }
+          }}
         />
         <div role="spacebox" className={classes['spacebox-in-flexbox']} />
         <CompareBoard className={classes.CompareBoard} />
       </div>
-      <UserCart state={{ boolean: { hasUserCart } }} />
+      <UserFavorites state={{ boolean: { hasUserFavorites } }} />
     </>
   )
 }

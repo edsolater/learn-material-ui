@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/styles'
 //  the first Element should be root Element
 import { Drawer, List, ListItem, ListItemText } from '@material-ui/core'
 
-// direct styles in Home Page
 const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing.unit
@@ -15,15 +14,14 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// 0 links
-export function UserCart({
+export function UserFavorites({
   state: {
-    boolean: { hasUserCart }
+    boolean: { hasUserFavorites }
   }
 }) {
   const classes = useStyles()
   return (
-    <Drawer anchor="bottom" open={hasUserCart}>
+    <Drawer anchor="bottom" open={hasUserFavorites}>
       <div>
         <List>
           <ListItem botton>

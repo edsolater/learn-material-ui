@@ -7,13 +7,15 @@ const useStyles = makeStyles(theme => ({
   root: {
     marginBottom: theme.spacing.unit,
     color: theme.palette.secondary.main,
-    background: theme.palette.primary.main,
-  },
+    background: theme.palette.primary.main
+  }
 }))
 
 // 0 links
-export default function CategoriesAvatar({
-  enumState: { currentSymbol: avatarLetter },
+export default function ShelfIndicator({
+  state: {
+    keys: { currentSymbol: avatarLetter }
+  }
 }) {
   const classes = useStyles()
   const discription = avatarLetter.toUpperCase()

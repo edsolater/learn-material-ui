@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import {} from '@material-ui/icons'
 import DetailCard from './CompareBoard_DetailCard'
-import BaseBoard from './BaseBoard'
+import BasePaper from './BasePaper'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export function CompareBoard() {
+export function CompareBoard({ children }) {
   const classes = useStyles()
-  return <BaseBoard><DetailCard /></BaseBoard>
+  return <BasePaper>{children}</BasePaper>
 }

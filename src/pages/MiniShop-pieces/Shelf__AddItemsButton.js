@@ -12,22 +12,20 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // 0 links
-export default function addButton({
+export default function AddItemsButton({
   state: {
-    collectionKey: {
-      object: { currentSymbol }
-    },
-    original: { shelfCards }
+    keys: { currentSymbol },
+    collections: { shelfItems }
   },
   setters: {
-    original: { setShelfCards }
+    collections: { setShelfItems }
   }
 }) {
   const classes = useStyles()
-  function add(e) {
-    setShelfCards({
-      ...shelfCards,
-      [currentSymbol]: [...shelfCards[currentSymbol], 1]
+  function addShelfItems(e) {
+    setShelfItems({
+      ...shelfItems,
+      [currentSymbol]: [...shelfItems[currentSymbol], 1]
     })
   }
   return (
@@ -35,7 +33,7 @@ export default function addButton({
       variant="contained"
       color="secondary"
       className={classes.root}
-      onClick={add}
+      onClick={addShelfItems}
     >
       <AddIcon />
     </Button>

@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 
 export function Categories({
   state: {
-    computed: { symbols }
+    collections: { symbols }
   },
   setters: {
     enum: { changeCurrentSymbol }

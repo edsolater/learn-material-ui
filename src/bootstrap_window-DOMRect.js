@@ -6,7 +6,7 @@ function rect_in(another) {
     this.bottom < another.bottom
   )
 }
-function rect_overLap(another) {
+function rect_intersect(another) {
   return (
     ((another.left > this.left && this.left < another.right) ||
       (another.left > this.right && this.right < another.right)) &&
@@ -15,12 +15,12 @@ function rect_overLap(another) {
   )
 }
 function rect_on(another) {
-  return this.rect_overLap(another) && !this.rect_overLap(another)
+  return this.rect_intersect(another) && !this.rect_intersect(another)
 }
 function bool_diff(bool1, bool2) {
   return bool1 + bool2 == 1
 }
 
 window.DOMRect.prototype.in = rect_in
-window.DOMRect.prototype.overLap = rect_overLap
+window.DOMRect.prototype.intersect = rect_intersect
 window.DOMRect.prototype.on = rect_on

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import classnames from 'classnames'
 import { makeStyles } from '@material-ui/styles'
 import Draggable from 'react-draggable'
@@ -28,13 +28,13 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Template() {
+export default function Items() {
   const classes = useStyles()
   const rootElement = React.createRef()
-  useEffect(() => {
+  React.useEffect(() => {
     console.log('rectBounding: ', rootElement.current.getBoundingClientRect())
   })
-  function handle_DraggableStop(){
+  function handle_DraggableStop() {
     console.log('rectBounding: ', rootElement.current.getBoundingClientRect())
   }
   return (
