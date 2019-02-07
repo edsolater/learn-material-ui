@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// 未来TODO：要把名字都集中到顶层的统一配置中
 export function Categories({
   state: {
     computed: { symbols }
@@ -27,7 +26,7 @@ export function Categories({
     <Paper className={classes.paper}>
       <Grid container spacing={24}>
         {symbols.map(symbol => (
-          <Grid item container xs={4} lg={2} justify="center">
+          <Grid item container xs={4} lg={2} justify="center" key={symbol}>
             <IconButton onClick={() => changeCurrentSymbol(symbol)}>
               <Avatar className={classes.avatarButton}>{symbol}</Avatar>
             </IconButton>
