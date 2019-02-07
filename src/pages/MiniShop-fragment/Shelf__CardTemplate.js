@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import classnames from 'classnames'
 import { makeStyles } from '@material-ui/styles'
 import Draggable from 'react-draggable'
@@ -30,25 +30,35 @@ const useStyles = makeStyles(theme => ({
 
 export default function Template() {
   const classes = useStyles()
+  const rootElement = React.createRef()
+  useEffect(() => {
+    console.log('rectBounding: ', rootElement.current.getBoundingClientRect())
+  })
+  function handle_DraggableStop(){
+    console.log('rectBounding: ', rootElement.current.getBoundingClientRect())
+  }
   return (
-    <Draggable>
-      <Card className={classes.root}>
-        <div className={classes.detail}>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h5">
-              Lizard
-            </Typography>
-            <Typography variant="subtitle1" color="textSecondary">
-              insect
-            </Typography>
-          </CardContent>
-        </div>
-        <CardMedia
-          className={classes.picture}
-          image="/favicon.ico"
-          title="favicon"
-        />
-      </Card>
+    // need to config <Draggable>
+    <Draggable onStop={handle_DraggableStop}>
+      <div label="refWrapper" ref={rootElement}>
+        <Card className={classes.root}>
+          <div className={classes.detail}>
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h5">
+                Lizard
+              </Typography>
+              <Typography variant="subtitle1" color="textSecondary">
+                insect
+              </Typography>
+            </CardContent>
+          </div>
+          <CardMedia
+            className={classes.picture}
+            image="/favicon.ico"
+            title="favicon"
+          />
+        </Card>
+      </div>
     </Draggable>
   )
 }

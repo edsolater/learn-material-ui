@@ -25,7 +25,6 @@ export default function addButton({
 }) {
   const classes = useStyles()
   function add(e) {
-    console.log(e)
     setShelfCards({
       ...shelfCards,
       [currentSymbol]: [...shelfCards[currentSymbol], 1]

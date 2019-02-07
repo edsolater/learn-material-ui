@@ -42,8 +42,8 @@ export function Shelf({
         setters={{ original: { setShelfCards } }}
       />
       <div className={classes.goodsGridbox}>
-        {shelfCards[currentSymbol].map(cardInfo => (
-          <Template />
+        {shelfCards[currentSymbol].map((cardInfo,index) => (
+          <Template key={String(index)}/>
         ))}
       </div>
     </div>
