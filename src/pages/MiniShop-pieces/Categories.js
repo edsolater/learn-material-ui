@@ -13,8 +13,8 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export function Categories({
-  state: {
+export default function Categories({
+  stateValue: {
     collections: { symbols }
   },
   setters: {

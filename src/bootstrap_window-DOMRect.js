@@ -18,7 +18,7 @@ function rect_on(another) {
   return this.rect_intersect(another) && !this.rect_intersect(another)
 }
 function bool_diff(bool1, bool2) {
-  return bool1 + bool2 == 1
+  return bool1 + bool2 === 1
 }
 
 window.DOMRect.prototype.in = rect_in

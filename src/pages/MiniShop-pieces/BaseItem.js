@@ -37,9 +37,12 @@ export default function Items() {
   function handle_DraggableStop() {
     console.log('rectBounding: ', rootElement.current.getBoundingClientRect())
   }
+  function handle_MouseDown(e) {
+    e.stopPropagation()
+  }
   return (
     // need to config <Draggable>
-    <Draggable onStop={handle_DraggableStop}>
+    <Draggable bounds="parent" onStop={handle_DraggableStop} onMouseDown={handle_MouseDown}>
       <div label="refWrapper" ref={rootElement}>
         <Card className={classes.root}>
           <div className={classes.detail}>

@@ -14,8 +14,8 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export function UserFavorites({
-  state: {
+export default function UserFavorites({
+  stateValue: {
     boolean: { hasUserFavorites }
   }
 }) {

@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
 
 // 0 links
 export default function ShelfIndicator({
-  state: {
+  stateValue: {
     keys: { currentSymbol: avatarLetter }
   }
 }) {

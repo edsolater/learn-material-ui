@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/styles'
 //  the first Element should be root Element
 import { Drawer, Paper, List, ListItem, ListItemText } from '@material-ui/core'
 
-// direct styles in Home Page
 const useStyles = makeStyles(theme => ({
   paper: {
     padding: theme.spacing.unit,
@@ -15,9 +14,8 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// 0 links
-export function Favorites({
-  state: {
+export default function Favorites({
+  stateValue: {
     boolean: { hasFavorites }
   },
   setters: {

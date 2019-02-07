@@ -5,7 +5,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import BasePaper from './BasePaper'
 import AddItemsButton from './Shelf__AddItemsButton'
-import Item from './Shelf__Item'
+import ShelfItem from './Shelf__Item'
 import ShelfIndicator from './Shelf__Indicator'
 
 const useStyles = makeStyles(theme => ({
@@ -19,33 +19,27 @@ const useStyles = makeStyles(theme => ({
   goodsGridbox: {}
 }))
 
-export function Shelf({
-  state: {
+export default function Shelf({
+  stateValue: {
     keys: { currentSymbol },
-    collections: { shelfItems }
+    computed: { currentShelfItems }
   },
   setters: {
-    collections: { setShelfItems }
+    customed: { addCurrentItems }
   }
 }) {
   const classes = useStyles()
   const s = (
     <div className={classes.columnFlexbox}>
       <ShelfIndicator
-        state={{
+        stateValue={{
           keys: { currentSymbol }
         }}
       />
-      <AddItemsButton
-        state={{
-          keys: { currentSymbol },
-          collections: { shelfItems }
-        }}
-        setters={{ collections: { setShelfItems } }}
-      />
+      <AddItemsButton setters={{ customed: { addCurrentItems } }} />
       <div className={classes.goodsGridbox}>
-        {shelfItems[currentSymbol].map((item, index) => (
-          <Item key={String(index)} />
+        {currentShelfItems.map((item, index) => (
+          <ShelfItem key={String(index)} />
         ))}
       </div>
     </div>

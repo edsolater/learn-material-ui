@@ -6,12 +6,14 @@ import {
   Categories,
   Shelf,
   CompareBoard,
-  UserFavorites
+  UserFavorites,
+  UserCustomPaper,
+  AddPaperButton
 } from './MiniShop-pieces'
 
 const useStyles = makeStyles(theme => ({
-  ['spacebox-below-appbar']: {
-    // 需要获取appbar的高度，动态地设定值
+  'spacebox-below-appbar': {
+    // 需要获取appbar的 DOM 的高度，动态地设定值
     height: theme.spacing.unit * 10
   },
   flexbox: {
@@ -19,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     width: '100%'
   },
-  ['spacebox-in-flexbox']: {
+  'spacebox-in-flexbox': {
     width: theme.spacing.gutter
   }
 }))
@@ -30,7 +32,7 @@ export default function MiniShop() {
   const [hasShelf, toggleShelf] = React.useToggle(false)
   const [hasUserFavorites, toggleUserFavorites] = React.useToggle(false)
   const [hasFavorites, toggleFavorites] = React.useToggle(false)
-  const [shelfItems, setShelfItems] = React.useState({
+  const [allShelfItems, setShelfItems] = React.useState({
     S: [],
     I: [],
     M: [],
@@ -38,10 +40,21 @@ export default function MiniShop() {
     L: [],
     E: []
   })
-  const symbols = Object.keys(shelfItems)
+  const symbols = Object.keys(allShelfItems)
   const [currentSymbol, changeCurrentSymbol] = React.useState(symbols[0])
-  const [specialPapers, setSpecialPapers] = React.useState([])
-  const [normalPapers, setNormalPapers] = React.useState([])
+  let currentShelfItems = allShelfItems[currentSymbol]
+  const [userCustomPapers, setUserCustomPapers] = React.useState([1])
+
+  function addUserCustomPapers() {
+    window.alert('clicked')
+    setUserCustomPapers([...userCustomPapers, 1])
+  }
+  function addCurrentItems() {
+    setShelfItems({
+      ...allShelfItems,
+      [currentSymbol]: [...allShelfItems[currentSymbol], 1]
+    })
+  }
 
   return (
     <>
@@ -58,11 +71,12 @@ export default function MiniShop() {
       />
       <div role="spacebox" className={classes['spacebox-below-appbar']} />
       <Favorites
-        state={{ boolean: { hasFavorites } }}
+        stateValue={{ boolean: { hasFavorites } }}
         setters={{ boolean: { toggleFavorites } }}
       />
+      <AddPaperButton setters={{ customed: { addUserCustomPapers } }} />
       <Categories
-        state={{ collections: { symbols } }}
+        stateValue={{ collections: { symbols } }}
         setters={{
           boolean: { toggleShelf },
           enum: { changeCurrentSymbol }
@@ -71,18 +85,23 @@ export default function MiniShop() {
       <div role="flexbox" className={classes.flexbox}>
         <Shelf
           className={classes.shelf}
-          state={{
+          stateValue={{
             keys: { currentSymbol },
-            collections: { shelfItems }
+            collections: { allShelfItems },
+            computed: { currentShelfItems }
           }}
           setters={{
-            collections: { setShelfItems }
+            collections: { setShelfItems },
+            customed: { addCurrentItems }
           }}
         />
         <div role="spacebox" className={classes['spacebox-in-flexbox']} />
         <CompareBoard className={classes.CompareBoard} />
       </div>
-      <UserFavorites state={{ boolean: { hasUserFavorites } }} />
+      <UserFavorites stateValue={{ boolean: { hasUserFavorites } }} />
+      {userCustomPapers.map((userCustomPape, index) => (
+        <UserCustomPaper key={String(index)} />
+      ))}
     </>
   )
 }
