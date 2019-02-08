@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 // 0 links
 export default function AddPaperButton({
   setters: {
-    customed: { addUserCustomPapers }
+    customed: { addWhiteboards }
   }
 }) {
   const classes = useStyles()
@@ -24,7 +24,7 @@ export default function AddPaperButton({
       variant="contained"
       color="primary"
       className={classes.root}
-      onClick={addUserCustomPapers}
+      onClick={addWhiteboards}
     >
       <AddIcon />
     </Button>

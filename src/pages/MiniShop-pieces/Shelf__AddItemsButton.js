@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
 // 0 links
 export default function AddItemsButton({
   setters: {
-    customed: { addCurrentItems }
+    customed: { addCurrentShelfItems }
   }
 }) {
   const classes = useStyles()
@@ -23,7 +23,7 @@ export default function AddItemsButton({
       variant="outlined"
       color="secondary"
       className={classes.root}
-      onClick={addCurrentItems}
+      onClick={addCurrentShelfItems}
     >
       <AddIcon />
     </Button>

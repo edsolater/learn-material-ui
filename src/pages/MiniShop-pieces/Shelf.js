@@ -12,38 +12,35 @@ const useStyles = makeStyles(theme => ({
   columnFlexbox: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
-    height: '100%',
-    width: '100%'
-  },
-  goodsGridbox: {}
+    alignItems: 'center'
+  }
 }))
 
 export default function Shelf({
   stateValue: {
-    keys: { currentSymbol },
+    keys: { currentShelfID },
     computed: { currentShelfItems }
   },
   setters: {
-    customed: { addCurrentItems }
+    customed: { addCurrentShelfItems }
   }
 }) {
   const classes = useStyles()
   const s = (
-    <div className={classes.columnFlexbox}>
-      <ShelfIndicator
-        stateValue={{
-          keys: { currentSymbol }
-        }}
-      />
-      <AddItemsButton setters={{ customed: { addCurrentItems } }} />
-      <div className={classes.goodsGridbox}>
-        {currentShelfItems.map((item, index) => (
-          <ShelfItem key={String(index)} />
-        ))}
+    <>
+      <div className={classes.columnFlexbox}>
+        <ShelfIndicator
+          stateValue={{
+            keys: { currentShelfID }
+          }}
+        />
+        <AddItemsButton setters={{ customed: { addCurrentShelfItems } }} />
       </div>
-    </div>
+      {currentShelfItems.map((item, index) => (
+        <ShelfItem key={String(index)} />
+      ))}
+    </>
   )
 
-  return <BasePaper>{s}</BasePaper>
+  return <BasePaper className={classes.columnFlexbox}>{s}</BasePaper>
 }

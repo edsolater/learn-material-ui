@@ -15,20 +15,20 @@ const useStyles = makeStyles(theme => ({
 
 export default function Categories({
   stateValue: {
-    collections: { symbols }
+    collections: { shelfIDs }
   },
   setters: {
-    enum: { changeCurrentSymbol }
+    enum: { setCurrentShelfID }
   }
 }) {
   const classes = useStyles()
   return (
     <Paper className={classes.paper}>
       <Grid container spacing={24}>
-        {symbols.map(symbol => (
-          <Grid item container xs={4} lg={2} justify="center" key={symbol}>
-            <IconButton onClick={() => changeCurrentSymbol(symbol)}>
-              <Avatar className={classes.avatarButton}>{symbol}</Avatar>
+        {shelfIDs.map(shelfID => (
+          <Grid item container xs={4} lg={2} justify="center" key={shelfID}>
+            <IconButton onClick={() => setCurrentShelfID(shelfID)}>
+              <Avatar className={classes.avatarButton}>{shelfID}</Avatar>
             </IconButton>
           </Grid>
         ))}

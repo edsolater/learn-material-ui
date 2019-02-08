@@ -28,32 +28,59 @@ const useStyles = makeStyles(theme => ({
 
 // container component
 export default function MiniShop() {
+  // JSS style object
   const classes = useStyles()
+
+  // pieces togglers
   const [hasShelf, toggleShelf] = React.useToggle(false)
   const [hasUserFavorites, toggleUserFavorites] = React.useToggle(false)
   const [hasFavorites, toggleFavorites] = React.useToggle(false)
-  const [allShelfItems, setShelfItems] = React.useState({
-    S: [],
-    I: [],
-    M: [],
-    P: [],
-    L: [],
-    E: []
-  })
-  const symbols = Object.keys(allShelfItems)
-  const [currentSymbol, changeCurrentSymbol] = React.useState(symbols[0])
-  let currentShelfItems = allShelfItems[currentSymbol]
-  const [userCustomPapers, setUserCustomPapers] = React.useState([1])
 
-  function addUserCustomPapers() {
-    window.alert('clicked')
-    setUserCustomPapers([...userCustomPapers, 1])
+  // shelves infos
+  const [shelves, setShelves] = React.useState([
+    { id: 'S', items: [] },
+    { id: 'I', items: [] },
+    { id: 'M', items: [] },
+    { id: 'P', items: [] },
+    { id: 'L', items: [] },
+    { id: 'E', items: [] }
+  ])
+  const shelfIDs = shelves.map(shelf => shelf.id)
+  const [currentShelfID, setCurrentShelfID] = React.useState(shelfIDs[0])
+  const currentShelfItems = shelves.find(shelf => shelf.id === currentShelfID)
+    .items
+
+  // whiteboards infos
+  const [whiteboards, setWhiteboards] = React.useState([{ id: '0000' }])
+  const whiteboardIDs = whiteboards.map(whiteboard => whiteboard.id)
+  const [currentWhiteboardID, setCurrentWhiteboardID] = React.useState(
+    whiteboardIDs[0]
+  )
+  const currentWhiteboardItems = whiteboards.find(
+    whiteboard => whiteboard.id === currentWhiteboardID
+  ).items
+
+  function addWhiteboards() {
+    setWhiteboards([...whiteboards, { id: '0001' } /* 此处应该有 id 生成器 */])
   }
-  function addCurrentItems() {
-    setShelfItems({
-      ...allShelfItems,
-      [currentSymbol]: [...allShelfItems[currentSymbol], 1]
-    })
+  function addCurrentWhiteboardItems() {
+    const newWhiteboard = {
+      id: currentWhiteboardID,
+      items: [...currentWhiteboardItems, 1]
+    }
+    const oldWhiteboardIndex = whiteboards.findIndex(
+      ({ id }) => id === currentWhiteboardID
+    )
+    const newWhiteboards = whiteboards.slice()
+    newWhiteboards[oldWhiteboardIndex] = newWhiteboard
+    setWhiteboards(newWhiteboards)
+  }
+  function addCurrentShelfItems() {
+    const newShelf = { id: currentShelfID, items: [...currentShelfItems, 1] }
+    const oldShelfIndex = shelves.findIndex(({ id }) => id === currentShelfID)
+    const newShelves = shelves.slice()
+    newShelves[oldShelfIndex] = newShelf
+    setShelves(newShelves)
   }
 
   return (
@@ -69,37 +96,37 @@ export default function MiniShop() {
           }
         }}
       />
-      <div role="spacebox" className={classes['spacebox-below-appbar']} />
+      <div label="spacebox" className={classes['spacebox-below-appbar']} />
       <Favorites
         stateValue={{ boolean: { hasFavorites } }}
         setters={{ boolean: { toggleFavorites } }}
       />
-      <AddPaperButton setters={{ customed: { addUserCustomPapers } }} />
+      <AddPaperButton setters={{ customed: { addWhiteboards } }} />
       <Categories
-        stateValue={{ collections: { symbols } }}
+        stateValue={{ collections: { shelfIDs } }}
         setters={{
           boolean: { toggleShelf },
-          enum: { changeCurrentSymbol }
+          enum: { setCurrentShelfID }
         }}
       />
-      <div role="flexbox" className={classes.flexbox}>
+      <div label="flexbox" className={classes.flexbox}>
         <Shelf
           className={classes.shelf}
           stateValue={{
-            keys: { currentSymbol },
-            collections: { allShelfItems },
+            keys: { currentShelfID },
+            collections: { shelves },
             computed: { currentShelfItems }
           }}
           setters={{
-            collections: { setShelfItems },
-            customed: { addCurrentItems }
+            collections: { setShelves },
+            customed: { addCurrentShelfItems }
           }}
         />
         <div role="spacebox" className={classes['spacebox-in-flexbox']} />
         <CompareBoard className={classes.CompareBoard} />
       </div>
       <UserFavorites stateValue={{ boolean: { hasUserFavorites } }} />
-      {userCustomPapers.map((userCustomPape, index) => (
+      {whiteboards.map((userCustomPape, index) => (
         <UserCustomPaper key={String(index)} />
       ))}
     </>

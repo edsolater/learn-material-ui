@@ -31,19 +31,16 @@ const useStyles = makeStyles(theme => ({
 export default function Items() {
   const classes = useStyles()
   const rootElement = React.createRef()
-  React.useEffect(() => {
-    console.log('rectBounding: ', rootElement.current.getBoundingClientRect())
-  })
   function handle_DraggableStop() {
-    console.log('rectBounding: ', rootElement.current.getBoundingClientRect())
+    // console.log('rectBounding: ', rootElement.current.getBoundingClientRect())
   }
-  function handle_MouseDown(e) {
-    e.stopPropagation()
+  function handle_MouseDown(mouseEvent) {
+    mouseEvent.stopPropagation()
   }
   return (
     // need to config <Draggable>
-    <Draggable bounds="parent" onStop={handle_DraggableStop} onMouseDown={handle_MouseDown}>
-      <div label="refWrapper" ref={rootElement}>
+    <Draggable onStop={handle_DraggableStop} onMouseDown={handle_MouseDown}>
+      <div label="bounding" ref={rootElement}>
         <Card className={classes.root}>
           <div className={classes.detail}>
             <CardContent>
