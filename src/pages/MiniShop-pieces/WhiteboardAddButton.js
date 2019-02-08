@@ -13,7 +13,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // 0 links
-export default function AddPaperButton({
+export default function WhiteboardAddButton({
   setters: {
     customed: { addWhiteboards }
   }

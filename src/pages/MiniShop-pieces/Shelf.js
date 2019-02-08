@@ -1,12 +1,12 @@
 /**
- * @description this is a container component relay on BasePaper
+ * @description this is a container component relay on BaseBoard
  */
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
-import BasePaper from './BasePaper'
-import AddItemsButton from './Shelf__AddItemsButton'
-import ShelfItem from './Shelf__Item'
-import ShelfIndicator from './Shelf__Indicator'
+import BaseBoard from './BaseBoard'
+import ShelfItem from './ShelfItem'
+import ShelfItemAddButton from './ShelfItemAddButton'
+import ShelfIndicator from './ShelfIndicator'
 
 const useStyles = makeStyles(theme => ({
   columnFlexbox: {
@@ -34,13 +34,13 @@ export default function Shelf({
             keys: { currentShelfID }
           }}
         />
-        <AddItemsButton setters={{ customed: { addCurrentShelfItems } }} />
+        <ShelfItemAddButton setters={{ customed: { addCurrentShelfItems } }} />
       </div>
-      {currentShelfItems.map((item, index) => (
-        <ShelfItem key={String(index)} />
+      {currentShelfItems.map(({ id }, index) => (
+        <ShelfItem key={String(index)} title={id} />
       ))}
     </>
   )
 
-  return <BasePaper className={classes.columnFlexbox}>{s}</BasePaper>
+  return <BaseBoard className={classes.columnFlexbox}>{s}</BaseBoard>
 }

@@ -5,7 +5,7 @@ import {
   Favorites,
   Categories,
   Shelf,
-  AddPaperButton,
+  WhiteboardAddButton,
   Whiteboard
 } from './MiniShop-pieces'
 
@@ -70,7 +70,8 @@ export default function MiniShop() {
     setWhiteboards(newWhiteboards)
   }
   function addCurrentShelfItems() {
-    const newShelf = { id: currentShelfID, items: [...currentShelfItems, 1] }
+    const newShelfItem = { id: `${Math.random()}` }
+    const newShelf = { id: currentShelfID, items: [...currentShelfItems, newShelfItem] }
     const oldShelfIndex = shelves.findIndex(({ id }) => id === currentShelfID)
     const newShelves = shelves.slice()
     newShelves[oldShelfIndex] = newShelf
@@ -95,7 +96,7 @@ export default function MiniShop() {
         stateValue={{ boolean: { hasFavorites } }}
         setters={{ boolean: { toggleFavorites } }}
       />
-      <AddPaperButton setters={{ customed: { addWhiteboards } }} />
+      <WhiteboardAddButton setters={{ customed: { addWhiteboards } }} />
       <Categories
         stateValue={{ collections: { shelfIDs } }}
         setters={{

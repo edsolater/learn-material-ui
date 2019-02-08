@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // 0 links
-export default function AddItemsButton({
+export default function ShelfItemAddButton({
   setters: {
     customed: { addCurrentShelfItems }
   }

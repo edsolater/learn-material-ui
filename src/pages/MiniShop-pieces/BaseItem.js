@@ -1,12 +1,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import Draggable from 'react-draggable'
-import {
-  Card,
-  CardMedia,
-  CardContent,
-  Typography
-} from '@material-ui/core'
+import { Card, CardMedia, CardContent, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Items() {
+export default function Item({ title = 'default title' }) {
   const classes = useStyles()
   const rootElement = React.createRef()
   function handle_DraggableStop() {
@@ -39,7 +34,7 @@ export default function Items() {
           <div className={classes.detail}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="h5">
-                Lizard
+                {title.slice(0, 4)}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
                 insect

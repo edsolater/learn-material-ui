@@ -1,5 +1,5 @@
 /**
- * be imported in ./UserFavorites.js && ./Whiteboard.js && ./UserCustomPaper.js
+ * be imported in ./Whiteboard.js && ./Shelf.js
  */
 import React from 'react'
 import classNames from 'classnames'
@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function BasePaper({ children, className }) {
+export default function BaseBoard({ children, className }) {
   const classes = useStyles()
   return (
     <Draggable>
