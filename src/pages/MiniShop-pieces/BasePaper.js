@@ -1,5 +1,5 @@
 /**
- * be imported in ./UserFavorites.js && ./CompareBoard.js && ./UserCustomPaper.js
+ * be imported in ./UserFavorites.js && ./Whiteboard.js && ./UserCustomPaper.js
  */
 import React from 'react'
 import classNames from 'classnames'

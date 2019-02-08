@@ -5,10 +5,8 @@ import {
   Favorites,
   Categories,
   Shelf,
-  CompareBoard,
-  UserFavorites,
-  UserCustomPaper,
-  AddPaperButton
+  AddPaperButton,
+  Whiteboard
 } from './MiniShop-pieces'
 
 const useStyles = makeStyles(theme => ({
@@ -32,8 +30,6 @@ export default function MiniShop() {
   const classes = useStyles()
 
   // pieces togglers
-  const [hasShelf, toggleShelf] = React.useToggle(false)
-  const [hasUserFavorites, toggleUserFavorites] = React.useToggle(false)
   const [hasFavorites, toggleFavorites] = React.useToggle(false)
 
   // shelves infos
@@ -47,19 +43,17 @@ export default function MiniShop() {
   ])
   const shelfIDs = shelves.map(shelf => shelf.id)
   const [currentShelfID, setCurrentShelfID] = React.useState(shelfIDs[0])
-  const currentShelfItems = shelves.find(shelf => shelf.id === currentShelfID)
-    .items
+  const currentShelfItems = shelves.find(shelf => shelf.id === currentShelfID).items
 
   // whiteboards infos
   const [whiteboards, setWhiteboards] = React.useState([{ id: '0000' }])
   const whiteboardIDs = whiteboards.map(whiteboard => whiteboard.id)
-  const [currentWhiteboardID, setCurrentWhiteboardID] = React.useState(
-    whiteboardIDs[0]
-  )
+  const [currentWhiteboardID, setCurrentWhiteboardID] = React.useState(whiteboardIDs[0])
   const currentWhiteboardItems = whiteboards.find(
     whiteboard => whiteboard.id === currentWhiteboardID
   ).items
 
+  // component handlers
   function addWhiteboards() {
     setWhiteboards([...whiteboards, { id: '0001' } /* 此处应该有 id 生成器 */])
   }
@@ -83,6 +77,7 @@ export default function MiniShop() {
     setShelves(newShelves)
   }
 
+  // root component
   return (
     <>
       <MyAppBar
@@ -91,8 +86,7 @@ export default function MiniShop() {
         appbarPosition="fixed"
         setters={{
           boolean: {
-            toggleFavorites,
-            toggleUserFavorites
+            toggleFavorites
           }
         }}
       />
@@ -105,7 +99,6 @@ export default function MiniShop() {
       <Categories
         stateValue={{ collections: { shelfIDs } }}
         setters={{
-          boolean: { toggleShelf },
           enum: { setCurrentShelfID }
         }}
       />
@@ -123,11 +116,10 @@ export default function MiniShop() {
           }}
         />
         <div role="spacebox" className={classes['spacebox-in-flexbox']} />
-        <CompareBoard className={classes.CompareBoard} />
+        <Whiteboard className={classes.Whiteboard} />
       </div>
-      <UserFavorites stateValue={{ boolean: { hasUserFavorites } }} />
-      {whiteboards.map((userCustomPape, index) => (
-        <UserCustomPaper key={String(index)} />
+      {whiteboards.map((whiteboard, index) => (
+        <Whiteboard key={String(index)} />
       ))}
     </>
   )

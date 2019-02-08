@@ -2,9 +2,7 @@ import MyAppBar from './MyAppBar'
 import Favorites from './Favorites'
 import Categories from './Categories'
 import Shelf from './Shelf'
-import CompareBoard from './CompareBoard'
-import UserFavorites from './UserFavorites'
-import UserCustomPaper from './UserCustomPaper'
+import Whiteboard from './Whiteboard'
 import AddPaperButton from './AddPaperButton'
 
 const exportObject = {
@@ -12,9 +10,7 @@ const exportObject = {
   Favorites,
   Categories,
   Shelf,
-  CompareBoard,
-  UserFavorites,
-  UserCustomPaper,
+  Whiteboard,
   AddPaperButton
 }
 export {
@@ -22,9 +18,7 @@ export {
   Favorites,
   Categories,
   Shelf,
-  CompareBoard,
-  UserFavorites,
-  UserCustomPaper,
+  Whiteboard,
   AddPaperButton
 }
 export default exportObject

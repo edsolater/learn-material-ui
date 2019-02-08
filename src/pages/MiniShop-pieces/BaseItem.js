@@ -1,14 +1,10 @@
 import React from 'react'
-import classnames from 'classnames'
 import { makeStyles } from '@material-ui/styles'
 import Draggable from 'react-draggable'
 import {
   Card,
-  CardActionArea,
-  CardActions,
   CardMedia,
   CardContent,
-  Button,
   Typography
 } from '@material-ui/core'
 
@@ -34,12 +30,10 @@ export default function Items() {
   function handle_DraggableStop() {
     // console.log('rectBounding: ', rootElement.current.getBoundingClientRect())
   }
-  function handle_MouseDown(mouseEvent) {
-    mouseEvent.stopPropagation()
-  }
+
   return (
     // need to config <Draggable>
-    <Draggable onStop={handle_DraggableStop} onMouseDown={handle_MouseDown}>
+    <Draggable onStop={handle_DraggableStop} onMouseDown={e => e.stopPropagation()}>
       <div label="bounding" ref={rootElement}>
         <Card className={classes.root}>
           <div className={classes.detail}>
@@ -52,11 +46,7 @@ export default function Items() {
               </Typography>
             </CardContent>
           </div>
-          <CardMedia
-            className={classes.picture}
-            image="/favicon.ico"
-            title="favicon"
-          />
+          <CardMedia className={classes.picture} image="/favicon.ico" title="favicon" />
         </Card>
       </div>
     </Draggable>
