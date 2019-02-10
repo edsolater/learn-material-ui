@@ -47,7 +47,7 @@ export default function MiniShop() {
 
   // whiteboards infos
   const [whiteboards, setWhiteboards] = React.useState([
-    { id: '0000', items: [{ id: `${Math.random()}`, location: 'whiteboard0000' }] },
+    { id: '0000', items: [{ id: `${Math.random()}`, location: 'from S' }] },
     { id: '0001', items: [] }
   ])
   const whiteboardIDs = whiteboards.map(whiteboard => whiteboard.id)
