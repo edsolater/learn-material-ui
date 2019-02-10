@@ -12,7 +12,8 @@ const useStyles = makeStyles(theme => ({
   columnFlexbox: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'center',
+    zIndex: 2
   }
 }))
 
@@ -22,12 +23,13 @@ export default function Shelf({
     computed: { currentShelfItems }
   },
   setters: {
-    customed: { addCurrentShelfItems }
+    customed: { addCurrentShelfItems, copyShelfItem }
   }
 }) {
   const classes = useStyles()
-  const s = (
-    <>
+
+  return (
+    <BaseBoard className={classes.columnFlexbox}>
       <div className={classes.columnFlexbox}>
         <ShelfIndicator
           stateValue={{
@@ -36,11 +38,15 @@ export default function Shelf({
         />
         <ShelfItemAddButton setters={{ customed: { addCurrentShelfItems } }} />
       </div>
-      {currentShelfItems.map(({ id }, index) => (
-        <ShelfItem key={String(index)} title={id} />
+      {currentShelfItems.map(({ id, location }, index) => (
+        <ShelfItem
+          key={String(index)}
+          setters={{ copyShelfItem }}
+          itemID={id}
+          title={id}
+          subtitle={location}
+        />
       ))}
-    </>
+    </BaseBoard>
   )
-
-  return <BaseBoard className={classes.columnFlexbox}>{s}</BaseBoard>
 }

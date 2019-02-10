@@ -1,3 +1,6 @@
+// 它体现着 whiteboard 与 shelfBoard 的共性
+
+
 /**
  * be imported in ./Whiteboard.js && ./Shelf.js
  */

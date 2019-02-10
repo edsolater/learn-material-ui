@@ -15,3 +15,4 @@ ReactDOM.render(
   </GlobalTheme>,
   document.getElementById('root'),
 )
+

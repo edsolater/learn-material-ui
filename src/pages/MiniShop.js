@@ -46,7 +46,10 @@ export default function MiniShop() {
   const currentShelfItems = shelves.find(shelf => shelf.id === currentShelfID).items
 
   // whiteboards infos
-  const [whiteboards, setWhiteboards] = React.useState([{ id: '0000' }])
+  const [whiteboards, setWhiteboards] = React.useState([
+    { id: '0000', items: [{ id: `${Math.random()}`, location: 'whiteboard0000' }] },
+    { id: '0001', items: [] }
+  ])
   const whiteboardIDs = whiteboards.map(whiteboard => whiteboard.id)
   const [currentWhiteboardID, setCurrentWhiteboardID] = React.useState(whiteboardIDs[0])
   const currentWhiteboardItems = whiteboards.find(
@@ -62,20 +65,23 @@ export default function MiniShop() {
       id: currentWhiteboardID,
       items: [...currentWhiteboardItems, 1]
     }
-    const oldWhiteboardIndex = whiteboards.findIndex(
-      ({ id }) => id === currentWhiteboardID
-    )
+    const oldWhiteboardIndex = whiteboards.findIndex(({ id }) => id === currentWhiteboardID)
     const newWhiteboards = whiteboards.slice()
     newWhiteboards[oldWhiteboardIndex] = newWhiteboard
     setWhiteboards(newWhiteboards)
   }
   function addCurrentShelfItems() {
-    const newShelfItem = { id: `${Math.random()}` }
+    const newShelfItem = { id: `${Math.random()}`, location: currentShelfID }
     const newShelf = { id: currentShelfID, items: [...currentShelfItems, newShelfItem] }
     const oldShelfIndex = shelves.findIndex(({ id }) => id === currentShelfID)
     const newShelves = shelves.slice()
     newShelves[oldShelfIndex] = newShelf
     setShelves(newShelves)
+  }
+  // TODO: items 与 whiteboard 应该有专门的类来描述。这个类有个名为 “copyTO” 的公共方法。
+  // 以下仅为应急措施
+  function copyShelfItem({ itemID, targetID }) {
+    console.log(itemID, targetID)
   }
 
   // root component
@@ -107,21 +113,20 @@ export default function MiniShop() {
         <Shelf
           className={classes.shelf}
           stateValue={{
-            keys: { currentShelfID },
+            keys: { currentShelfID, currentWhiteboardID },
             collections: { shelves },
             computed: { currentShelfItems }
           }}
           setters={{
             collections: { setShelves },
-            customed: { addCurrentShelfItems }
+            customed: { addCurrentShelfItems, copyShelfItem }
           }}
         />
         <div role="spacebox" className={classes['spacebox-in-flexbox']} />
-        <Whiteboard className={classes.Whiteboard} />
+        {whiteboards.map((whiteboard, index) => (
+          <Whiteboard key={String(index)} info={whiteboard} />
+        ))}
       </div>
-      {whiteboards.map((whiteboard, index) => (
-        <Whiteboard key={String(index)} />
-      ))}
     </>
   )
 }

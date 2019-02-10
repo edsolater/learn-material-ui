@@ -7,7 +7,7 @@ const useStyles = makeStyles(theme => ({
   root: {
     display: 'inline-flex',
     padding: 0,
-    height: theme.spacing.unit * 8
+    height: theme.spacing.unit * 15
   },
   detail: {
     display: 'flex',
@@ -19,25 +19,36 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Item({ title = 'default title' }) {
+export default function Item({
+  setters: { copyShelfItem } ={},
+  itemID,
+  title = 'default title',
+  subtitle = 'insert subtitle here'
+}) {
   const classes = useStyles()
-  const rootElement = React.createRef()
+  let rootElement
   function handle_DraggableStop() {
     // console.log('rectBounding: ', rootElement.current.getBoundingClientRect())
+    // const rootRect = rootElement.getBoundingClientRect()
+    // if (rootRect.)
   }
 
   return (
     // need to config <Draggable>
     <Draggable onStop={handle_DraggableStop} onMouseDown={e => e.stopPropagation()}>
-      <div label="bounding" ref={rootElement}>
+      <div
+        label="bounding"
+        ref={el => (rootElement = el)}
+        onDoubleClick={() => copyShelfItem({ itemID, targetID: '0000' })}
+      >
         <Card className={classes.root}>
           <div className={classes.detail}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="h5">
-                {title.slice(0, 4)}
+                {title.slice(0, 6)}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
-                insect
+                {subtitle.slice(0, 6)}
               </Typography>
             </CardContent>
           </div>
