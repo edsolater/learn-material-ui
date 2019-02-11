@@ -4,7 +4,7 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import BaseBoard from './BaseBoard'
-import ShelfItem from './ShelfItem'
+import Item from './BaseItem'
 import ShelfItemAddButton from './ShelfItemAddButton'
 import ShelfIndicator from './ShelfIndicator'
 
@@ -39,7 +39,7 @@ export default function Shelf({
         <ShelfItemAddButton setters={{ customed: { addCurrentShelfItems } }} />
       </div>
       {currentShelfItems.map(({ id, location }, index) => (
-        <ShelfItem
+        <Item
           key={String(index)}
           setters={{ copyShelfItem }}
           itemID={id}

@@ -1,18 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
-import './html-body.css'
-import './bootstrap_Material-UI'
-import './bootstrap_React'
-import './bootstrap_window-DOMRect'
+import './initialize.css'
+import './bootstrap_lastest_Material-UI'
 
-import GlobalTheme from './GlobalTheme'
-import MiniShop from './pages/MiniShop'
+import MiniShop from './pages/miniShop'
 
-ReactDOM.render(
-  <GlobalTheme>
-    <MiniShop />
-  </GlobalTheme>,
-  document.getElementById('root'),
-)
-
+ReactDOM.render(<MiniShop />, document.getElementById('root'))

@@ -2,7 +2,7 @@ import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import {} from '@material-ui/icons'
 import BaseBoard from './BaseBoard'
-import ShelfItem from './ShelfItem'
+import Item from './BaseItem'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -11,13 +11,13 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Whiteboard({ info }) {
+export default function Whiteboar({ info }) {
   const classes = useStyles()
   const { id: whiteboardID, items } = info
   return (
     <BaseBoard className={classes.columnFlexbox}>
       {items.map(({ itemID, location }, index) => (
-        <ShelfItem key={String(index)} itemID={itemID} title={itemID} subtitle={location} />
+        <Item key={String(index)} itemID={itemID} title={itemID} subtitle={location} />
       ))}
     </BaseBoard>
   )
