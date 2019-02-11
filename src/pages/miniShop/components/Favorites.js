@@ -1,3 +1,4 @@
+// 👌
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 //  the first Element should be root Element
@@ -14,8 +15,8 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Favorites({
-  stateValue: {
+export default function({
+  localState: {
     boolean: { hasFavorites }
   },
   setters: {
@@ -33,7 +34,7 @@ export default function Favorites({
     >
       <Paper className={classes.paper}>
         <List>
-          <ListItem botton>
+          <ListItem>
             <ListItemText>hello</ListItemText>
           </ListItem>
         </List>

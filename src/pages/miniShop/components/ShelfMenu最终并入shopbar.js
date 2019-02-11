@@ -14,11 +14,11 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Categories({
-  stateValue: {
+  localState: {
     collections: { shelfIDs }
   },
   setters: {
-    enum: { setCurrentShelfID }
+    enum: { setActiveShelfID }
   }
 }) {
   const classes = useStyles()
@@ -27,7 +27,7 @@ export default function Categories({
       <Grid container spacing={24}>
         {shelfIDs.map(shelfID => (
           <Grid item container xs={4} lg={2} justify="center" key={shelfID}>
-            <IconButton onClick={() => setCurrentShelfID(shelfID)}>
+            <IconButton onClick={() => setActiveShelfID(shelfID)}>
               <Avatar className={classes.avatarButton}>{shelfID}</Avatar>
             </IconButton>
           </Grid>

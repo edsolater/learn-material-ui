@@ -1,8 +1,8 @@
 
-function addCurrentShelfItems() {
-  const newShelfItem = { id: `${Math.random()}`, location: currentShelfID }
-  const newShelf = { id: currentShelfID, items: [...currentShelfItems, newShelfItem] }
-  const oldShelfIndex = shelves.findIndex(({ id }) => id === currentShelfID)
+function addActiveShelfItems() {
+  const newShelfItem = { id: `${Math.random()}`, location: activeShelfID }
+  const newShelf = { id: activeShelfID, items: [...activeShelfItems, newShelfItem] }
+  const oldShelfIndex = shelves.findIndex(({ id }) => id === activeShelfID)
   const newShelves = shelves.slice()
   newShelves[oldShelfIndex] = newShelf
   setShelves(newShelves)

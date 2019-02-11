@@ -2,6 +2,6 @@ import ShopBar from './ShopBar'
 import Favorites from './Favorites'
 import ShelfBoard from './ShelfBoard'
 import UserBoards from './UserBoards'
-import BaseItem from './BaseItem'
+import FlaotingBall from './FlaotingBall'
 
-export { ShopBar, Favorites, ShelfBoard, UserBoards, BaseItem }
+export { ShopBar, Favorites, ShelfBoard, UserBoards, FlaotingBall }

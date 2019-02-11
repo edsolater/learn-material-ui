@@ -1,52 +1,39 @@
 /**
+ * 👌
  * @description this is a container component relay on BaseBoard
  */
 import React from 'react'
-import { makeStyles } from '@material-ui/styles'
-import BaseBoard from './BaseBoard'
-import BaseItem from './BaseItem'
-import ShelfItemAddButton from './ShelfItemAddButton'
-import ShelfIndicator from './ShelfIndicator'
+import { connect } from 'react-redux'
 
-const useStyles = makeStyles(theme => ({
-  columnFlexbox: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    zIndex: 2
-  }
-}))
+import BaseBoard from './BaseUI/BaseBoard'
+import BaseItem from './BaseUI/BaseItem'
+import createButton from './BaseUI/createButton'
+import { getActiveShelfBoard, getActiveUserBoard } from '../redux/selectors'
 
-export default function Shelf({
-  stateValue: {
-    keys: { currentShelfID },
-    computed: { currentShelfItems }
-  },
-  setters: {
-    customed: { addCurrentShelfItems, copyShelfItem }
-  }
-}) {
-  const classes = useStyles()
-
+const ShelfBoard = ({ items, name, activeUserBoard }) => {
   return (
-    <BaseBoard className={classes.columnFlexbox}>
-      <div className={classes.columnFlexbox}>
-        <ShelfIndicator
-          stateValue={{
-            keys: { currentShelfID }
-          }}
-        />
-        <ShelfItemAddButton setters={{ customed: { addCurrentShelfItems } }} />
+    <BaseBoard>
+      <div>
+        {name}
+        {createButton('add_item_in_shelf')}
       </div>
-      {currentShelfItems.map(({ id, location }, index) => (
+      {items.map((item, index) => (
         <BaseItem
           key={String(index)}
-          setters={{ copyShelfItem }}
-          itemID={id}
-          title={id}
-          subtitle={location}
+          itemInfo={item}
+          activeUserBoard={activeUserBoard}
         />
       ))}
     </BaseBoard>
   )
 }
+
+const mapStateToProps = ({ boards: { shelfBoards, userBoards } }) => {
+  return {
+    items: getActiveShelfBoard(shelfBoards).items,
+    name: getActiveShelfBoard(shelfBoards).name,
+    activeUserBoard: getActiveUserBoard(userBoards)
+  }
+}
+
+export default connect(mapStateToProps)(ShelfBoard)

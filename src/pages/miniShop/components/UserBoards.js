@@ -1,23 +1,23 @@
+// 👌
 import React from 'react'
 import { connect } from 'react-redux'
 
-import { actionA, actionB } from '../redux/actionCreators'
 import UserBoard from './UserBoard'
 
-const UserBoards = ({ currentUserBoard }) => {
+const UserBoards = ({ userBoards}) => {
   return (
     <>
       {userBoards.map((userBoard, index) => (
-        <UserBoard key={String(index)} objectInfo={userBoard} />
+        <UserBoard
+          key={String(index)}
+          info={userBoard}
+        />
       ))}
     </>
   )
 }
-const mapStateToProps = state => {
-  return { currentUserBoard: state.currentUserBoard }
+const mapStateToProps = ({ boards: { userBoards } }) => {
+  return { userBoards }
 }
 
-export default connect(
-  mapStateToProps,
-  { actionA, actionB }
-)(UserBoards)
+export default connect(mapStateToProps)(UserBoards)

@@ -1,6 +1,7 @@
+// 👌
 import React from 'react'
-import { makeStyles } from '@material-ui/styles'
 import Draggable from 'react-draggable'
+import { makeStyles } from '@material-ui/styles'
 import { Card, CardMedia, CardContent, Typography } from '@material-ui/core'
 
 const useStyles = makeStyles(theme => ({
@@ -19,40 +20,44 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Item({
-  setters: { copyShelfItem } ={},
-  itemID,
-  title = 'default title',
-  subtitle = 'insert subtitle here'
-}) {
+export default function Item({ info: thisItem, activeUserBoard }) {
   const classes = useStyles()
   let rootElement
   function handle_DraggableStop() {
-    // console.log('rectBounding: ', rootElement.current.getBoundingClientRect())
+    // console.log('rectBounding: ', rootElement.active.getBoundingClientRect())
     // const rootRect = rootElement.getBoundingClientRect()
     // if (rootRect.)
   }
-
+  const handleDoubleClick = () => {
+    if (activeUserBoard) thisItem.copyTo(activeUserBoard)
+  }
   return (
     // need to config <Draggable>
-    <Draggable onStop={handle_DraggableStop} onMouseDown={e => e.stopPropagation()}>
+    <Draggable
+      onStop={handle_DraggableStop}
+      onMouseDown={e => e.stopPropagation()}
+    >
       <div
         label="bounding"
         ref={el => (rootElement = el)}
-        onDoubleClick={() => copyShelfItem({ itemID, targetID: '0000' })}
+        onDoubleClick={handleDoubleClick}
       >
         <Card className={classes.root}>
           <div className={classes.detail}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="h5">
-                {title.slice(0, 6)}
+                {thisItem.title.slice(0, 6)}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
-                {subtitle.slice(0, 6)}
+                {thisItem.subtitle.slice(0, 6)}
               </Typography>
             </CardContent>
           </div>
-          <CardMedia className={classes.picture} image="/favicon.ico" title="favicon" />
+          <CardMedia
+            className={classes.picture}
+            image="/favicon.ico"
+            title="favicon"
+          />
         </Card>
       </div>
     </Draggable>

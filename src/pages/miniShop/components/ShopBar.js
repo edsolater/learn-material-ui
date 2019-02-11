@@ -1,3 +1,4 @@
+// 👌
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import {
@@ -75,12 +76,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 // 2 links: CategoriesLink, ShelfLink
-export default function MyAppBar({
-  setters: {
-    boolean: { toggleFavorites}
-  },
-  appbarPosition = 'fixed'
-}) {
+export default function MyAppBar({ setters: { boolen: toggleFavorites } }) {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
@@ -89,7 +85,7 @@ export default function MyAppBar({
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
   function handleProfileMenuOpen(event) {
-    setAnchorEl(event.currentTarget)
+    setAnchorEl(event.activeTarget)
   }
 
   function handleMobileMenuClose() {
@@ -102,7 +98,7 @@ export default function MyAppBar({
   }
 
   function handleMobileMenuOpen(event) {
-    setMobileMoreAnchorEl(event.currentTarget)
+    setMobileMoreAnchorEl(event.activeTarget)
   }
 
   const renderMenu = (
@@ -120,7 +116,7 @@ export default function MyAppBar({
 
   return (
     <div className={classes.root}>
-      <AppBar position={appbarPosition}>
+      <AppBar position={'fixed'}>
         <Toolbar>
           <IconButton
             className={classes.menuButton}

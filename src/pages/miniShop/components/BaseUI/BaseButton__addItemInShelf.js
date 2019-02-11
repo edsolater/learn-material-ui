@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/styles'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 
-// direct styles in Home Page
+import { addItemInShelf } from './buttonHandlers'
+
 const useStyles = makeStyles(theme => ({
   root: {
     width: theme.spacing.unit * 12,
@@ -11,19 +12,14 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// 0 links
-export default function ShelfItemAddButton({
-  setters: {
-    customed: { addCurrentShelfItems }
-  }
-}) {
+export default () => {
   const classes = useStyles()
   return (
     <Button
       variant="outlined"
       color="secondary"
       className={classes.root}
-      onClick={addCurrentShelfItems}
+      onClick={addItemInShelf}
     >
       <AddIcon />
     </Button>

@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default function Favorites({
-  stateValue: {
+  localState: {
     boolean: { hasFavorites }
   },
   setters: {
@@ -33,7 +33,7 @@ export default function Favorites({
     >
       <Paper className={classes.paper}>
         <List>
-          <ListItem botton>
+          <ListItem bottom>
             <ListItemText>hello</ListItemText>
           </ListItem>
         </List>

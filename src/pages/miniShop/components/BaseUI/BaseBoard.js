@@ -1,5 +1,4 @@
-// 它体现着 whiteboard 与 shelfBoard 的共性
-
+// 它体现着 UserBoard 与 ShelfBoard 的共性
 
 /**
  * be imported in ./Whiteboard.js && ./Shelf.js
@@ -14,14 +13,19 @@ const useStyles = makeStyles(theme => ({
   root: {
     width: '40%',
     height: 500,
-    flex: 1,
+    flex: 1
     // display: 'flex',
     // flexDirection: 'column',
     // justifyContent: 'flex-start'
   }
 }))
 
-export default function BaseBoard({ children, className }) {
+export default function BaseBoard({
+  children,
+  className,
+  info: { id, name },
+  active
+}) {
   const classes = useStyles()
   return (
     <Draggable>

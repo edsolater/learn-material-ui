@@ -11,7 +11,7 @@ const [shelves, setShelves] = React.useState([
   { id: 'E', items: [] }
 ])
 const shelfIDs = shelves.map(shelf => shelf.id)
-const [currentShelfID, setCurrentShelfID] = React.useState(shelfIDs[0])
+const [activeShelfID, setActiveShelfID] = React.useState(shelfIDs[0])
 
 // whiteboards infos
 const [whiteboards, setWhiteboards] = React.useState([
@@ -19,14 +19,14 @@ const [whiteboards, setWhiteboards] = React.useState([
   { id: '0001', items: [] }
 ])
 const whiteboardIDs = whiteboards.map(whiteboard => whiteboard.id)
-const [currentWhiteboardID, setCurrentWhiteboardID] = React.useState(whiteboardIDs[0])
+const [activeWhiteboardID, setActiveWhiteboardID] = React.useState(whiteboardIDs[0])
 
 // component handlers
 
-function addCurrentShelfItems() {
-  const newShelfItem = { id: `${Math.random()}`, location: currentShelfID }
-  const newShelf = { id: currentShelfID, items: [...currentShelfItems, newShelfItem] }
-  const oldShelfIndex = shelves.findIndex(({ id }) => id === currentShelfID)
+function addActiveShelfItems() {
+  const newShelfItem = { id: `${Math.random()}`, location: activeShelfID }
+  const newShelf = { id: activeShelfID, items: [...activeShelfItems, newShelfItem] }
+  const oldShelfIndex = shelves.findIndex(({ id }) => id === activeShelfID)
   const newShelves = shelves.slice()
   newShelves[oldShelfIndex] = newShelf
   setShelves(newShelves)
