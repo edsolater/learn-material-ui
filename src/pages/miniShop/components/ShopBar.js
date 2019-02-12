@@ -75,8 +75,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-// 2 links: CategoriesLink, ShelfLink
-export default function MyAppBar({ setters: { boolen: toggleFavorites } }) {
+export default function ({ setters: { boolen: toggleFavorites } }) {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)

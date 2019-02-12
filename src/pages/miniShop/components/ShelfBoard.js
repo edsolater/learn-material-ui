@@ -8,7 +8,7 @@ import { connect } from 'react-redux'
 import BaseBoard from './BaseUI/BaseBoard'
 import BaseItem from './BaseUI/BaseItem'
 import createButton from './BaseUI/createButton'
-import { getActiveShelfBoard, getActiveUserBoard } from '../redux/selectors'
+import { getActiveShelfBoard, getActiveUserBoard } from '../data/selectors'
 
 const ShelfBoard = ({ items, name, activeUserBoard }) => {
   return (
@@ -28,10 +28,10 @@ const ShelfBoard = ({ items, name, activeUserBoard }) => {
   )
 }
 
-const mapStateToProps = ({ boards: { shelfBoards, userBoards } }) => {
+const mapStateToProps = ({ boards: { shelfBoards, userBoards=[] } }) => {
   return {
-    items: getActiveShelfBoard(shelfBoards).items,
-    name: getActiveShelfBoard(shelfBoards).name,
+    items:[],
+    name: '',
     activeUserBoard: getActiveUserBoard(userBoards)
   }
 }

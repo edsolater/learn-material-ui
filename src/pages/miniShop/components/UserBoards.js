@@ -4,10 +4,10 @@ import { connect } from 'react-redux'
 
 import UserBoard from './UserBoard'
 
-const UserBoards = ({ userBoards}) => {
+const UserBoards = ({ userBoards}={userBoards:[]}) => {
   return (
     <>
-      {userBoards.map((userBoard, index) => (
+      {[].map((userBoard, index) => (
         <UserBoard
           key={String(index)}
           info={userBoard}

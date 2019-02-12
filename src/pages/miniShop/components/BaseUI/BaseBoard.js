@@ -20,10 +20,10 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function BaseBoard({
+export default function ({
   children,
   className,
-  info: { id, name },
+  info: { id, name } ={},
   active
 }) {
   const classes = useStyles()

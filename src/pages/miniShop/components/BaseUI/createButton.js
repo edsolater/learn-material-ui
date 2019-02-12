@@ -1,8 +1,8 @@
 // imported in ../ShelfBoard.js
 import React from 'react'
 
-import AddItemInShelf from './BaseButton__addItemInShelf'
-import AddUserBoard from './BaseButton__addUserBoard'
+import AddItemInShelf from './createButton__AddItemInShelf'
+import AddUserBoard from './createButton__AddUserBoard'
 
 const collections = {
   add_item_in_shelf: <AddItemInShelf />,

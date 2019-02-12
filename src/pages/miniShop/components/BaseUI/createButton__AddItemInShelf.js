@@ -1,9 +1,10 @@
+// should be used in ./createButton.js
 import React from 'react'
 import { makeStyles } from '@material-ui/styles'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 
-import { addItemInShelf } from './buttonHandlers'
+import { addItemInShelf } from './createButton__buttonHandlers'
 
 const useStyles = makeStyles(theme => ({
   root: {

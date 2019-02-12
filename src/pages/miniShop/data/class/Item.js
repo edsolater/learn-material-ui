@@ -1,6 +1,6 @@
-import store from '../redux/store'
-import { changeItemLocation } from '../redux/actionCreators'
-window.Item = class {
+import store from '../store'
+import { changeItemLocation } from '../actionCreators'
+export default class {
   constructor({ id, location, title, subtitle }) {
     this.id = id
     this.location = location
