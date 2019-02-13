@@ -1,18 +1,28 @@
-import { createStore } from 'redux'
-
+import { createStore, applyMiddleware } from 'redux'
+import multi from 'redux-multi'
 import rootReducer from './reducers'
 import { Board, Item } from './class'
 
-export default createStore(rootReducer, {
-  boards: {
-    shelfBoards: [new Board({ id: '0000', name: 'S', items: [] })],
-    userBoards: [{ id: '0000', name: 'first one', items: [] }]
+const storeMiddlewares = applyMiddleware(multi)
+
+const initialState = {
+  shelfBoards: {
+    all: [new Board({ type: 'shelfBoard', id: '0000', name: 'S' })],
+    activeBoard: null // 需要动态生成
   },
-  items: [
-    new Item({
-      id: '0000',
-      title: 'first Item',
-      subtitle: 'first one'
-    })
-  ]
-})
+  userBoards: {
+    all: [new Board({ name: 'default userBoard' })],
+    activeBoard: null // 需要动态生成
+  },
+  items: {
+    all: [
+      new Item({
+        id: '0000',
+        title: 'first Item',
+        subtitle: 'first one'
+      })
+    ]
+  }
+}
+
+export default createStore(rootReducer, initialState, storeMiddlewares)

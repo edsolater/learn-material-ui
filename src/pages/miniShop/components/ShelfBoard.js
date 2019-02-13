@@ -18,22 +18,21 @@ const ShelfBoard = ({ items, name, activeUserBoard }) => {
         {createButton('add_item_in_shelf')}
       </div>
       {items.map((item, index) => (
-        <BaseItem
-          key={String(index)}
-          itemInfo={item}
-          activeUserBoard={activeUserBoard}
-        />
+        <BaseItem key={String(index)} itemInfo={item} activeUserBoard={activeUserBoard} />
       ))}
     </BaseBoard>
   )
 }
 
-const mapStateToProps = ({ boards: { shelfBoards, userBoards=[] } }) => {
+const mapState = state => {
+  const { name='', items=[] } = getActiveShelfBoard(state.shelfBoards)
   return {
-    items:[],
-    name: '',
-    activeUserBoard: getActiveUserBoard(userBoards)
+    items,
+    name,
+    activeUserBoard: getActiveUserBoard(state.userBoards)
   }
 }
 
-export default connect(mapStateToProps)(ShelfBoard)
+export default connect(
+  mapState
+)(ShelfBoard)

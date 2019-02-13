@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function Item({ info: thisItem, activeUserBoard }) {
+export default function BaseItem({ info: thisItem, activeUserBoard }) {
   const classes = useStyles()
   let rootElement
   function handle_DraggableStop() {

@@ -14,13 +14,7 @@
 //   setWhiteboards(newWhiteboards)
 // }
 
-export default (
-  state = {
-    shelfBoards: [{ id: 'categories-01', name: 'S' }],
-    userboards: [{ id: '1111' }]
-  },
-  action
-) => {
+export default (state = [], action = {}) => {
   switch (action.type.toUpperCase()) {
     case 'add_userBoard'.toUpperCase(): {
       console.log('should defind reducer for board.js. command: add_userBoard')

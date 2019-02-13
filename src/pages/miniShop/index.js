@@ -2,7 +2,7 @@ import React from 'react'
 import './externalMethod'
 import { Provider } from 'react-redux'
 
-import { ShopBar, Favorites, ShelfBoard, UserBoards, FlaotingBall } from './components'
+import { ShopBar, Favorites, ShelfBoard, UserBoards, FloatingBall } from './components'
 import store from './data/store'
 import MiniShopTheme from './config/material-ui-theme'
 
@@ -19,7 +19,7 @@ export default () => {
         />
         <ShelfBoard />
         <UserBoards />
-        <FlaotingBall />
+        <FloatingBall />
       </MiniShopTheme>
     </Provider>
   )

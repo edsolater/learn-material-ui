@@ -1,6 +1,7 @@
+// reducers are state getters
 import { combineReducers } from 'redux'
-import app from './app'
-import boards from './boards'
+import shelfBoards from './shelfBoards'
+import userBoards from './userBoards'
 import items from './items'
 
-export default combineReducers({ app, boards, items })
+export default combineReducers({ shelfBoards, userBoards, items })

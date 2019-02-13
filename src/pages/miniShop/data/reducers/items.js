@@ -1,4 +1,3 @@
-
 // function addActiveShelfItems() {
 //   const newShelfItem = { id: `${Math.random()}`, location: activeShelfID }
 //   const newShelf = { id: activeShelfID, items: [...activeShelfItems, newShelfItem] }
@@ -8,8 +7,7 @@
 //   setShelves(newShelves)
 // }
 
-
-export default (state=[], action) => {
+export default (state = [], action = {}) => {
   console.log('should define reducer in items.js')
   return state
 }

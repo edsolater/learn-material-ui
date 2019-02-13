@@ -1,10 +1,12 @@
+// selectors are state getter
 //const activeShelfItems = shelves.find(shelf => shelf.id === activeShelfID).items
+export const getAllUserBoards = (userBoards = {}) => userBoards.all || []
 
-export const getActiveUserBoard = userBoards =>
-  userBoards.find(userBoard => userBoard.active)
+export const getAllShelfBoards = (shelfBoards = {}) => shelfBoards.all || []
 
-export const getShelfBoardNames = shelfBoards =>
-  shelfBoards.map(shelfBoard => shelfBoard.name)
+export const getActiveUserBoard = (userBoards = {}) => userBoards.active || {}
 
-export const getActiveShelfBoard = shelfBoards =>
-  shelfBoards.find(shelfBoard => shelfBoard.active)
+export const getActiveShelfBoard = (shelfBoards = {}) => shelfBoards.active || {}
+
+export const getShelfBoardNames = (shelfBoards = {}) =>
+  getAllShelfBoards(shelfBoards).map((shelfBoard = {}) => shelfBoard.name)
