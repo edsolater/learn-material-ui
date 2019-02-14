@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-export default function BaseItem({ info: thisItem, activeUserBoard }) {
+export default function BaseItem({ self, activeUserBoard }) {
   const classes = useStyles()
   let rootElement
   function handle_DraggableStop() {
@@ -29,7 +29,7 @@ export default function BaseItem({ info: thisItem, activeUserBoard }) {
     // if (rootRect.)
   }
   const handleDoubleClick = () => {
-    if (activeUserBoard) thisItem.copyTo(activeUserBoard)
+    if (activeUserBoard) self.copyTo(activeUserBoard)
   }
   return (
     // need to config <Draggable>
@@ -46,10 +46,10 @@ export default function BaseItem({ info: thisItem, activeUserBoard }) {
           <div className={classes.detail}>
             <CardContent>
               <Typography gutterBottom variant="h5" component="h5">
-                {thisItem.title.slice(0, 6)}
+                {self.title.slice(0, 6)}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary">
-                {thisItem.subtitle.slice(0, 6)}
+                {self.subtitle.slice(0, 6)}
               </Typography>
             </CardContent>
           </div>

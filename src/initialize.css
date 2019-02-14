@@ -1,11 +1,11 @@
 /* 'defaultSpacing=8px' in GlobalTheme.js  */
 :root {
   background: #333;
-  padding: 24px;
+  /* padding: 24px; */
   margin: 0;
   scrollbar-width: none;
 }
 body {
-  padding: 0;
-  margin: 0;
+  padding: 0 !important;
+  margin: 0
 }

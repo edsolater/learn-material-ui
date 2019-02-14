@@ -13,11 +13,25 @@
 //   newWhiteboards[oldWhiteboardIndex] = newWhiteboard
 //   setWhiteboards(newWhiteboards)
 // }
-
-export default (state = [], action = {}) => {
+import Board from '../class/Board'
+export default (
+  state = {
+    all: [new Board({ name: 'default userBoard' })],
+    get active() {
+      return this.all[0]
+    } // 需要动态生成
+  },
+  action = {}
+) => {
   switch (action.type.toUpperCase()) {
-    case 'add_userBoard'.toUpperCase(): {
-      console.log('should defind reducer for board.js. command: add_userBoard')
+    case 'add_user_board'.toUpperCase(): {
+      console.log('state: ', state)
+      return {
+        all: [...state.all, new Board({ name: 'default userBoard' })],
+        get active(){
+          return state.active
+        }
+      }
     }
     default:
       return state

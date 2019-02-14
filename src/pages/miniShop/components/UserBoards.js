@@ -9,7 +9,7 @@ const UserBoards = ({ userBoards=[] }) => {
   return (
     <>
       {userBoards.map((userBoard, index) => (
-        <UserBoard key={String(index)} info={userBoard} />
+        <UserBoard key={String(index)} self={userBoard} />
       ))}
     </>
   )

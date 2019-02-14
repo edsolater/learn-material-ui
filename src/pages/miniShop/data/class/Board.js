@@ -1,15 +1,16 @@
 import store from '../store'
 
-export default class Board{
+export default class Board {
   constructor({
     id = Date.now(),
     type = ['userBoard', 'shelfBoard'][0],
-    name = "unnamed"
+    name = 'unnamed',
+    items = []
   } = {}) {
     this.id = id
     this.type = type
     this.name = name
-    this.items = []
+    this.items = items
     this._store = store
     Board.addInstance(this)
   }

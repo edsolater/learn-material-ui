@@ -83,7 +83,10 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function ShopBar({ setters: { boolen: toggleFavorites } = {}, shelfBoardNames = [] }) {
+function ShopBar({
+  setters: { boolen: toggleFavorites } = {},
+  shelfBoardNames = []
+}) {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -103,8 +106,8 @@ function ShopBar({ setters: { boolen: toggleFavorites } = {}, shelfBoardNames = 
       open={isMenuOpen}
       onClose={closeShopMenu}
     >
-      {shelfBoardNames.map(shelfBoardName => (
-        <MenuItem onClick={showActiveShelfBoard}>
+      {shelfBoardNames.map((shelfBoardName, index) => (
+        <MenuItem onClick={showActiveShelfBoard} key={String(index)}>
           <Avatar className={classes.avatarButton}>{shelfBoardName}</Avatar>
         </MenuItem>
       ))}
@@ -123,7 +126,12 @@ function ShopBar({ setters: { boolen: toggleFavorites } = {}, shelfBoardNames = 
           >
             <MenuIcon />
           </IconButton>
-          <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+          <Typography
+            className={classes.title}
+            variant="h6"
+            color="inherit"
+            noWrap
+          >
             Material-UI
           </Typography>
           <div className={classes.search}>
