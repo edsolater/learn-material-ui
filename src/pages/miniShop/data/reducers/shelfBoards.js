@@ -30,7 +30,7 @@
 // }
 // TODO: items 与 whiteboard 应该有专门的类来描述。这个类有个名为 “copyTO” 的公共方法。
 // 以下仅为应急措施
-export default function copyShelfItem(state = {}, action = {}) {
+export default (state = {}, action = {}) => {
   console.log('app reducer', state.itemID, state.targetID)
   return state
 }

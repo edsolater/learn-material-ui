@@ -1,5 +1,5 @@
-// 👌
 import React from 'react'
+import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/styles'
 import {
   AppBar,
@@ -9,7 +9,8 @@ import {
   InputBase,
   Badge,
   Menu,
-  MenuItem
+  MenuItem,
+  Avatar
 } from '@material-ui/core'
 import { fade } from '@material-ui/core/styles/colorManipulator'
 import {
@@ -17,6 +18,9 @@ import {
   Search as SearchIcon,
   Menu as MenuIcon
 } from '@material-ui/icons'
+
+import { getShelfBoardNames } from '../data/selectors'
+import { showActiveShelfBoard } from '../data/actionCreators'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -72,64 +76,54 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('md')]: {
       width: 200
     }
+  },
+  avatarButton: {
+    color: theme.palette.secondary.main,
+    background: theme.palette.primary.main
   }
 }))
 
-export default function ({ setters: { boolen: toggleFavorites } }) {
+function ShopBar({ setters: { boolen: toggleFavorites } = {}, shelfBoardNames = [] }) {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null)
 
   const isMenuOpen = Boolean(anchorEl)
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl)
 
-  function handleProfileMenuOpen(event) {
-    setAnchorEl(event.activeTarget)
-  }
-
-  function handleMobileMenuClose() {
-    setMobileMoreAnchorEl(null)
-  }
-
-  function handleMenuClose() {
+  const closeShopMenu = () => {
     setAnchorEl(null)
-    handleMobileMenuClose()
+  }
+  const openShopMenu = e => {
+    setAnchorEl(e.currentTarget)
   }
 
-  function handleMobileMenuOpen(event) {
-    setMobileMoreAnchorEl(event.activeTarget)
-  }
-
-  const renderMenu = (
+  const shopMenu = (
     <Menu
       anchorEl={anchorEl}
-      anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-      transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+      anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
       open={isMenuOpen}
-      onClose={handleMenuClose}
+      onClose={closeShopMenu}
     >
-      <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+      {shelfBoardNames.map(shelfBoardName => (
+        <MenuItem onClick={showActiveShelfBoard}>
+          <Avatar className={classes.avatarButton}>{shelfBoardName}</Avatar>
+        </MenuItem>
+      ))}
     </Menu>
   )
 
   return (
     <div className={classes.root}>
-      <AppBar position={'fixed'}>
+      <AppBar position={'sticky'}>
         <Toolbar>
           <IconButton
             className={classes.menuButton}
             color="inherit"
             aria-label="Open drawer"
+            onClick={openShopMenu}
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            className={classes.title}
-            variant="h6"
-            color="inherit"
-            noWrap
-          >
+          <Typography className={classes.title} variant="h6" color="inherit" noWrap>
             Material-UI
           </Typography>
           <div className={classes.search}>
@@ -144,7 +138,7 @@ export default function ({ setters: { boolen: toggleFavorites } }) {
               }}
             />
           </div>
-          <div className={classes.grow} />
+          <div aria-label="grow-space-box" className={classes.grow} />
           <div className={classes.iconButtons}>
             <IconButton color="inherit" onClick={toggleFavorites}>
               <Badge badgeContent={4} color="secondary">
@@ -154,7 +148,16 @@ export default function ({ setters: { boolen: toggleFavorites } }) {
           </div>
         </Toolbar>
       </AppBar>
-      {renderMenu}
+      {shopMenu}
     </div>
   )
 }
+
+const mapState = (state = {}) => {
+  const shelfBoardNames = getShelfBoardNames(state.shelfBoards)
+  return {
+    shelfBoardNames
+  }
+}
+
+export default connect(mapState)(ShopBar)

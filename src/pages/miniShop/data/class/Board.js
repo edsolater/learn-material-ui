@@ -1,3 +1,5 @@
+import store from '../store'
+
 export default class Board{
   constructor({
     id = Date.now(),
@@ -8,6 +10,7 @@ export default class Board{
     this.type = type
     this.name = name
     this.items = []
+    this._store = store
     Board.addInstance(this)
   }
   static instances = []
