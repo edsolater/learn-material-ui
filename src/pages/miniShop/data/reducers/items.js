@@ -8,6 +8,6 @@
 // }
 
 export default (state = [], action = {}) => {
-  console.log('should define reducer in items.js')
+  
   return state
 }

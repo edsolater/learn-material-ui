@@ -11,15 +11,18 @@ export default class Board {
     this.type = type
     this.name = name
     this.items = items
-    this._store = store
     Board.addInstance(this)
   }
   static instances = []
   static addInstance(newInstance) {
     Board.instances.push(newInstance)
   }
-  cloneSelf() {
-    console.log('should clone this board')
+  get _storeState() {
+    return store.getState()
   }
+  get _dispatch() {
+    return store.dispatch
+  }
+  cloneSelf() {}
 }
 window.Board = Board

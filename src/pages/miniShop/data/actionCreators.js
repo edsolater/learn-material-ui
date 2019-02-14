@@ -1,7 +1,7 @@
 // import Item from './class/Item'
 import store from './store'
 
-const createAvailableItem = () => {
+const pickUpItem = () => {
   const allAvailableItems = store.getState().items.all
   return allAvailableItems[0] // 暂且返回可执行的第一个
 }
@@ -15,9 +15,9 @@ export const showActiveShelfBoard = () => ({ type: 'show_active_shelf_board' })
 export const addUserBoard = () => ({ type: 'add_user_board' })
 
 export const addShelfBoardItem = () => {
-  console.log("has dispatched 'addShelfBoardItem'")
+  
   return {
     type: 'add_shelf_board_item',
-    payload: { item: createAvailableItem() }
+    payload: { item: pickUpItem() }
   }
 }

@@ -24,7 +24,7 @@ export default function BaseItem({ self, activeUserBoard }) {
   const classes = useStyles()
   let rootElement
   function handle_DraggableStop() {
-    // console.log('rectBounding: ', rootElement.active.getBoundingClientRect())
+    // 
     // const rootRect = rootElement.getBoundingClientRect()
     // if (rootRect.)
   }

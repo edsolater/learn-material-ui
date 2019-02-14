@@ -26,15 +26,11 @@ const initialState = {
       new Board({ type: 'shelfBoard', id: '0004', name: 'L' }),
       new Board({ type: 'shelfBoard', id: '0005', name: 'E' })
     ],
-    get active() {
-      return this.all[0]
-    } // 需要动态生成
+    activeBoardIndex: 0
   },
   userBoards: {
     all: [new Board({ name: 'default userBoard' })],
-    get active() {
-      return this.all[0]
-    } // 需要动态生成
+    activeBoardIndex: 0
   },
   menuBoards: {
     all: [new Board({ type: 'menuBoard', id: 'menu-0000', name: 'shelf-menu' })]

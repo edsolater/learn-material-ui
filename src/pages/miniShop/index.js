@@ -6,7 +6,7 @@ import { ShopBar, Favorites, ShelfBoard, UserBoards, FloatingBall } from './comp
 import store from './data/store'
 import MiniShopTheme from './config/material-ui-theme'
 
-console.log('hello')
+
 export default () => {
   const [hasFavorites, toggleFavorites] = React.useToggle(false)
   return (

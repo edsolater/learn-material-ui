@@ -19,40 +19,39 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const ShelfBoard = ({ activeShelfBoard, activeUserBoard }) => {
+const ShelfBoard = ({
+  addShelfBoardItem,
+  activeShelfBoard,
+  activeUserBoard
+}) => {
   const { name, items = [] } = activeShelfBoard
-  console.log(activeShelfBoard)
   const classes = useStyles()
   return (
-    <BaseBoard shelf={activeShelfBoard}>
+    <BaseBoard self={activeShelfBoard}>
       <div>
         {name}
         <Button
           variant="outlined"
           color="secondary"
           className={classes.root}
-          onClick={() => (console.log('clicked'), addShelfBoardItem())}
+          onClick={addShelfBoardItem}
         >
           <AddIcon />
         </Button>
       </div>
-      {items.map(
-        (item, index) => (
-          console.log(item),
-          (
-            <BaseItem
-              key={String(index)}
-              self={item}
-              activeUserBoard={activeUserBoard}
-            />
-          )
-        )
-      )}
+      {(console.log('items', items),items.map((item, index) => (
+        <BaseItem
+          key={String(index)}
+          self={item}
+          activeUserBoard={activeUserBoard}
+        />
+      )))}
     </BaseBoard>
   )
 }
 
 const mapState = storeState => {
+  console.log('storeState', storeState)
   return {
     activeShelfBoard: getActiveShelfBoard(storeState.shelfBoards),
     activeUserBoard: getActiveUserBoard(storeState.userBoards)

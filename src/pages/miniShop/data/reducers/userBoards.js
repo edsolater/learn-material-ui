@@ -15,25 +15,20 @@
 // }
 import Board from '../class/Board'
 export default (
-  state = {
+  userBoards = {
     all: [new Board({ name: 'default userBoard' })],
-    get active() {
-      return this.all[0]
-    } // 需要动态生成
+    activeBoardIndex: 0
   },
   action = {}
 ) => {
-  switch (action.type.toUpperCase()) {
-    case 'add_user_board'.toUpperCase(): {
-      console.log('state: ', state)
+  switch (action.type) {
+    case 'add_user_board': {
       return {
-        all: [...state.all, new Board({ name: 'default userBoard' })],
-        get active(){
-          return state.active
-        }
+        ...userBoards,
+        all: [...userBoards.all, new Board({ name: 'default userBoard' })]
       }
     }
     default:
-      return state
+      return userBoards
   }
 }
