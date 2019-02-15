@@ -57,6 +57,12 @@ export default (/*state*/ shelfBoards = {}, action = {}) => {
         all: newShelfBoards
       }
     }
+    case 'change_active_shelf_board_index': {
+      return {
+        ...shelfBoards,
+        activeBoardIndex: action.payload.newIndex
+      }
+    }
     default:
       return shelfBoards
   }

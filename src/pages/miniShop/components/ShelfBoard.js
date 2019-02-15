@@ -39,7 +39,7 @@ const ShelfBoard = ({
           <AddIcon />
         </Button>
       </div>
-      {(console.log('items', items),items.map((item, index) => (
+      {(console.log('items in pages: ', items),items.map((item, index) => (
         <BaseItem
           key={String(index)}
           self={item}
@@ -51,7 +51,7 @@ const ShelfBoard = ({
 }
 
 const mapState = storeState => {
-  console.log('storeState', storeState)
+  console.log('current storeState', storeState)
   return {
     activeShelfBoard: getActiveShelfBoard(storeState.shelfBoards),
     activeUserBoard: getActiveUserBoard(storeState.userBoards)

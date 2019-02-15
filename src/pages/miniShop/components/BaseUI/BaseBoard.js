@@ -15,9 +15,6 @@ let Board
 import('../../data/class/Board').then(module => (Board = module.default))
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '40%',
-    height: 500,
-    flex: 1,
     margin: theme.spacing.gutter,
     padding: theme.spacing.unit
     // display: 'flex',
@@ -25,7 +22,6 @@ const useStyles = makeStyles(theme => ({
     // justifyContent: 'flex-start'
   }
 }))
-
 export default function({
   children,
   className,
@@ -36,6 +32,10 @@ export default function({
   active
 }) {
   const classes = useStyles()
+  const [size, setSize] = React.useState({ width: 200, height: 200 })
+  const onResize = (e, { size: newSize }) => {
+    setSize({ width: newSize.width, height: newSize.height })
+  }
   return (
     <Draggable>
       <Paper className={classNames(classes.root, className)}>{children}</Paper>
