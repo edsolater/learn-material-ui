@@ -13,11 +13,11 @@ const initialState = {
         id: '0000',
         name: 'S',
         items: [
-          new Item({
-            id: '0000',
-            title: 'NO.1 Item',
-            subtitle: 'first one'
-          })
+          // new Item({
+          //   id: '0000',
+          //   title: 'NO.1 Item',
+          //   subtitle: 'first one'
+          // })
         ]
       }),
       new Board({ type: 'shelfBoard', id: '0001', name: 'I' }),
@@ -29,7 +29,7 @@ const initialState = {
     activeBoardIndex: 0
   },
   userBoards: {
-    all: [new Board({ name: 'default userBoard' })],
+    all: [],
     activeBoardIndex: 0
   },
   menuBoards: {

@@ -5,9 +5,10 @@
  */
 import React from 'react'
 import classNames from 'classnames'
-import Draggable from 'react-draggable'
+import { Rnd } from 'react-rnd'
 import { makeStyles } from '@material-ui/styles'
 import { Paper } from '@material-ui/core'
+
 // import Board from '../../data/class/Board'
 // 需要使用动态import()， 不然会形成动态引用
 
@@ -15,14 +16,14 @@ let Board
 import('../../data/class/Board').then(module => (Board = module.default))
 const useStyles = makeStyles(theme => ({
   root: {
-    margin: theme.spacing.gutter,
-    padding: theme.spacing.unit
-    // display: 'flex',
-    // flexDirection: 'column',
-    // justifyContent: 'flex-start'
+    margin: 0,
+    padding: 0,
+    width: '100%', // fulfill <Paper> with <Rnd>
+    height: '100%' // fulfill <Paper> with <Rnd>
   }
 }))
-export default function({
+
+const BaseBoard = ({
   children,
   className,
   self = (Board && new Board()) || {
@@ -30,15 +31,33 @@ export default function({
     name: 'unassigned board'
   },
   active
-}) {
+}) => {
   const classes = useStyles()
-  const [size, setSize] = React.useState({ width: 200, height: 200 })
-  const onResize = (e, { size: newSize }) => {
-    setSize({ width: newSize.width, height: newSize.height })
-  }
   return (
-    <Draggable>
+    <Rnd
+      default={{
+        x: 150,
+        y: 205, // 一定要设置这两项，不然没法拖动
+        width: 500,
+        height: 800
+      }}
+      bounds="window"
+    >
       <Paper className={classNames(classes.root, className)}>{children}</Paper>
-    </Draggable>
+    </Rnd>
   )
 }
+
+// export default () => (
+//   <Rnd
+//     default={{
+//       width: 500,
+//       height: 800
+//     }}
+//     bounds="window"
+//   >
+//     <BaseBoard />
+//   </Rnd>
+// )
+
+export default BaseBoard
