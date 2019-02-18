@@ -30,7 +30,8 @@ const BaseBoard = ({
     id: 'unassigned',
     name: 'unassigned board'
   },
-  active
+  active,
+  style
 }) => {
   const classes = useStyles()
   return (
@@ -38,12 +39,20 @@ const BaseBoard = ({
       default={{
         x: 150,
         y: 205, // 一定要设置这两项，不然没法拖动
-        width: 500,
-        height: 800
+        width: 400,
+        height: 300
       }}
       bounds="window"
+      style={{
+        zIndex: 1000
+      }}
     >
-      <Paper className={classNames(classes.root, className)}>{children}</Paper>
+      <Paper
+        className={classNames(classes.root, className)}
+        style={{ ...style }}
+      >
+        {children}
+      </Paper>
     </Rnd>
   )
 }

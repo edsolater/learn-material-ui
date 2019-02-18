@@ -2,7 +2,6 @@ import { createStore, applyMiddleware } from 'redux'
 import multi from 'redux-multi'
 import rootReducer from './reducers'
 import { Board, Item } from './class'
-
 const storeMiddlewares = applyMiddleware(multi)
 
 const initialState = {

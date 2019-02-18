@@ -1,11 +1,12 @@
 /**
  * @description this is a container component relay on BaseBoard
  */
-import React from 'react'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { makeStyles } from '@material-ui/styles'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
+import lottie from 'lottie-web'
 
 import BaseBoard from './BaseUI/BaseBoard'
 import BaseItem from './BaseUI/BaseItem'
@@ -26,8 +27,20 @@ const ShelfBoard = ({
 }) => {
   const { name, items = [] } = activeShelfBoard
   const classes = useStyles()
+  useEffect(() => {
+    var container = document.getElementById('lottie')
+    var rectMoving = lottie.loadAnimation({
+      wrapper: container,
+      animType: 'svg',
+      path: 'data.json'
+    })
+    return () => {
+      rectMoving.destroy()
+    }
+  })
+
   return (
-    <BaseBoard self={activeShelfBoard}>
+    <BaseBoard self={activeShelfBoard} >
       <div>
         {name}
         <Button
@@ -39,13 +52,14 @@ const ShelfBoard = ({
           <AddIcon />
         </Button>
       </div>
-      {(console.log('items in pages: ', items),items.map((item, index) => (
+      <div id="lottie" />
+      {items.map((item, index) => (
         <BaseItem
           key={String(index)}
           self={item}
           activeUserBoard={activeUserBoard}
         />
-      )))}
+      ))}
     </BaseBoard>
   )
 }
