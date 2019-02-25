@@ -1,9 +1,0 @@
-<svg id="图层_1" viewBox="0 0 337 295">
-    <defs>
-        <style>
-            .cls-1 { fill: #b3b3b3; opacity: 0.2; animation: rotate 2s ease infinite; } .cls-1:hover { fill: rgb(253, 173, 255); opacity: 1; } @keyframes rotate { from { transform: rotate(0); } to { transform: rotate(1turn); } }
-        </style>
-    </defs>
-    <rect width="169" height="169" x="84" y="68" style="fill:#B3B3B3" class="cls-1" />
-    <rect id="asdf" x="74.368" y="29.851" fill="#ED1C24" width="230.264" height="225.299"/>
-</svg>

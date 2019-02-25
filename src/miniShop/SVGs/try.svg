@@ -9,6 +9,12 @@
             fill: rgb(253, 173, 255);
             opacity: 1;
           }
+          #two {
+            transition: fill 200ms linear; 
+          }
+          #two:hover {
+            fill: gold;
+          }
           @keyframes rotate {
             from {
               transform: rotate(0);
