@@ -2,47 +2,51 @@ import { createStore, applyMiddleware } from 'redux'
 import multi from 'redux-multi'
 import rootReducer from './reducers'
 import { Board, Item } from './class'
-const storeMiddlewares = applyMiddleware(multi)
 
+// TODO： 需要拆分开来， 尽量用对象解决，能更方便地解构
 const initialState = {
   shelfBoards: {
-    all: [
-      new Board({
+    all: {
+      0: new Board({
         type: 'shelfBoard',
-        id: '0000',
+        id: '0',
         name: 'S',
-        items: [
-          // new Item({
-          //   id: '0000',
-          //   title: 'NO.1 Item',
-          //   subtitle: 'first one'
-          // })
-        ]
+        items: []
       }),
-      new Board({ type: 'shelfBoard', id: '0001', name: 'I' }),
-      new Board({ type: 'shelfBoard', id: '0002', name: 'M' }),
-      new Board({ type: 'shelfBoard', id: '0003', name: 'P' }),
-      new Board({ type: 'shelfBoard', id: '0004', name: 'L' }),
-      new Board({ type: 'shelfBoard', id: '0005', name: 'E' })
-    ],
-    activeBoardIndex: 0
+      1: new Board({ type: 'shelfBoard', id: '1', name: 'I' }),
+      2: new Board({ type: 'shelfBoard', id: '2', name: 'M' }),
+      3: new Board({ type: 'shelfBoard', id: '3', name: 'P' }),
+      4: new Board({ type: 'shelfBoard', id: '4', name: 'L' }),
+      5: new Board({ type: 'shelfBoard', id: '5', name: 'E' }),
+      length: 6
+    },
+    active: {
+      type: 'shelfBoard',
+      id: '0',
+      name: 'S',
+      items: []
+    }
   },
   userBoards: {
-    all: [],
-    activeBoardIndex: 0
+    all: {},
+    active: {}
   },
   menuBoards: {
-    all: [new Board({ type: 'menuBoard', id: 'menu-0000', name: 'shelf-menu' })]
+    all: {
+      0: new Board({ type: 'menuBoard', id: 'menu-0000', name: 'shelf-menu' }),
+      length: 1
+    }
   },
   items: {
-    all: [
-      new Item({
-        id: '0000',
+    all: {
+      0: new Item({
+        id: '0',
         title: 'NO.1 Item',
         subtitle: 'first one'
-      })
-    ]
+      }),
+      length: 1
+    }
   }
 }
 
-export default createStore(rootReducer, initialState, storeMiddlewares)
+export default createStore(rootReducer, initialState, applyMiddleware(multi))

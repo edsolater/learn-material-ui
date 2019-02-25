@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import UserBoard from './UserBoard'
 import { getAllUserBoards } from '../data/selectors'
 
-const UserBoards = ({ userBoards=[] }) => {
+const UserBoards = ({ userBoards = [] }) => {
   return (
     <>
       {userBoards.map((userBoard, index) => (
@@ -18,7 +18,4 @@ const mapStateToProps = state => {
   return { userBoards: getAllUserBoards(state.userBoards) }
 }
 
-export default connect(
-  mapStateToProps,
-  null
-)(UserBoards)
+export default connect(mapStateToProps)(UserBoards)

@@ -1,9 +1,8 @@
-
 import Board from '../class/Board'
 export default (
   userBoards = {
-    all: [new Board({ name: 'default userBoard' })],
-    activeBoardIndex: 0
+    all: { 0: new Board({ name: 'default userBoard' }) },
+    active: {}
   },
   action = {}
 ) => {
@@ -17,7 +16,7 @@ export default (
     case 'change_active_user_board_index': {
       return {
         ...userBoards,
-        activeBoardIndex: action.payload.newIndex
+        activeBoardIndex: action.payload.newId
       }
     }
     default:

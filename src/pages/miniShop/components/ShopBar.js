@@ -20,7 +20,7 @@ import {
 } from '@material-ui/icons'
 
 import { getShelfBoardNames } from '../data/selectors'
-import { changeActiveBoardIndex } from '../data/actionCreators'
+import { changeActiveBoard } from '../data/actionCreators'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -86,7 +86,7 @@ const useStyles = makeStyles(theme => ({
 function ShopBar({
   setters: { boolen: toggleFavorites } = {},
   shelfBoardNames = [],
-  changeActiveBoardIndex
+  changeActiveBoard
 }) {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
@@ -105,13 +105,13 @@ function ShopBar({
       anchorEl={anchorEl}
       open={isMenuOpen}
       onClose={closeShopMenu}
-      anchorOrigin={{ horizontal: 'left', vertical: 'bottom'}}
+      anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
       getContentAnchorEl={null}
     >
       {shelfBoardNames.map((shelfBoardName, index) => (
         <MenuItem
           onClick={() => {
-            changeActiveBoardIndex({ boardType: 'shelfBoard', newIndex: index })
+            changeActiveBoard({ boardType: 'shelfBoard', newId: index })
             closeShopMenu()
           }}
           key={String(index)}
@@ -134,12 +134,7 @@ function ShopBar({
           >
             <MenuIcon />
           </IconButton>
-          <Typography
-            className={classes.title}
-            variant="h6"
-            color="inherit"
-            noWrap
-          >
+          <Typography className={classes.title} variant="h6" color="inherit" noWrap>
             Material-UI
           </Typography>
           <div className={classes.search}>
@@ -169,14 +164,12 @@ function ShopBar({
   )
 }
 
-const mapState = (state = {}) => {
-  const shelfBoardNames = getShelfBoardNames(state.shelfBoards)
-  return {
-    shelfBoardNames
-  }
-}
+const mapState = (state = {}) => ({
+  shelfBoardNames: getShelfBoardNames(state.shelfBoards)
+})
+
 const mapDispatch = {
-  changeActiveBoardIndex
+  changeActiveBoard
 }
 
 export default connect(

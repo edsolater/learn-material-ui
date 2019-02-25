@@ -20,12 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const ShelfBoard = ({
-  addShelfBoardItem,
-  activeShelfBoard,
-  activeUserBoard
-}) => {
-  const { name, items = [] } = activeShelfBoard
+const ShelfBoard = ({ name, items, activeUserBoard, addShelfBoardItem }) => {
   const classes = useStyles()
   useEffect(() => {
     var container = document.getElementById('lottie')
@@ -40,7 +35,7 @@ const ShelfBoard = ({
   })
 
   return (
-    <BaseBoard self={activeShelfBoard} >
+    <BaseBoard>
       <div>
         {name}
         <Button
@@ -54,20 +49,17 @@ const ShelfBoard = ({
       </div>
       <div id="lottie" />
       {items.map((item, index) => (
-        <BaseItem
-          key={String(index)}
-          self={item}
-          activeUserBoard={activeUserBoard}
-        />
+        <BaseItem key={String(index)} self={item} activeUserBoard={activeUserBoard} />
       ))}
     </BaseBoard>
   )
 }
 
 const mapState = storeState => {
-  console.log('current storeState', storeState)
+  const { name, items } = getActiveShelfBoard(storeState.shelfBoards)
   return {
-    activeShelfBoard: getActiveShelfBoard(storeState.shelfBoards),
+    name,
+    items,
     activeUserBoard: getActiveUserBoard(storeState.userBoards)
   }
 }

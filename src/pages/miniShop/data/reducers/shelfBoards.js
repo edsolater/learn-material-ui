@@ -32,35 +32,31 @@
 // 以下仅为应急措施
 import Board from '../class/Board'
 
-const addItemToBoard = ({ newItem, allBoards, activeBoardIndex }) => {
-  const oldBoards = allBoards.slice()
-  const oldBoard = oldBoards[activeBoardIndex]
-  oldBoards.splice(
-    activeBoardIndex,
-    1,
-    new Board({ ...oldBoard, items: [...oldBoard.items, newItem] })
-  )
-  const newBoards = oldBoards
-  return newBoards
-}
 
 export default (/*state*/ shelfBoards = {}, action = {}) => {
   switch (action.type) {
     case 'add_shelf_board_item': {
-      const newShelfBoards = addItemToBoard({
-        newItem: action.payload.item,
-        allBoards: shelfBoards.all,
-        activeBoardIndex: shelfBoards.activeBoardIndex
-      })
       return {
         ...shelfBoards,
-        all: newShelfBoards
+        active: {
+          ...shelfBoards.active,
+          items: [...shelfBoards.active.items, action.payload.item]
+        }
       }
     }
     case 'change_active_shelf_board_index': {
-      return {
-        ...shelfBoards,
-        activeBoardIndex: action.payload.newIndex
+      const oldId = shelfBoards.active.id
+      const newId = action.payload.newId
+      if (newId !== oldId) {
+        return {
+          all: {
+            ...shelfBoards.all,
+            [oldId]: new Board({ ...shelfBoards.active })
+          },
+          active: {
+            ...shelfBoards.all[newId]
+          }
+        }
       }
     }
     default:
