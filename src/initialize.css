@@ -1,8 +1,7 @@
 /* 'defaultSpacing=8px' in GlobalTheme.js  */
 /*  */
 html,
-body,
-#content {
+body {
   scrollbar-width: none;
   background: #333;
   min-height: 100%;

@@ -1,0 +1,24 @@
+<svg id="try" viewBox="0 0 337 295">
+    <defs>
+        <style>
+          #one {
+            transition: opacity 500ms ease;
+            animation: rotate 2s ease infinite;
+          }
+          #one:hover {
+            fill: rgb(253, 173, 255);
+            opacity: 1;
+          }
+          @keyframes rotate {
+            from {
+              transform: rotate(0);
+            }
+            to {
+              transform: rotate(1turn);
+            }
+          }
+        </style>
+    </defs>
+    <rect id="one" width="169" height="169" x="49" y="91" fill="#B3B3B3" opacity="0.2"/>
+    <rect id="two" width="230" height="225" x="172" y="-54" fill="#1E90FF"/>
+</svg>
