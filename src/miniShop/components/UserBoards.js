@@ -1,4 +1,3 @@
-// 👌
 import React from 'react'
 import { connect } from 'react-redux'
 
@@ -14,8 +13,8 @@ const UserBoards = ({ userBoards = [] }) => {
     </>
   )
 }
-const mapStateToProps = (state) => ({
+const mapState = (state) => ({
   userBoards: getAllUserBoards(state.userBoards)
 })
+export default connect(mapState)(UserBoards)
 
-export default connect(mapStateToProps)(UserBoards)

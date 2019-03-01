@@ -13,7 +13,7 @@ import BaseItem from './BaseUI/BaseItem'
 import { addShelfBoardItem } from '../data/actionCreators'
 import { getActiveShelfBoard, getActiveUserBoard } from '../data/selectors'
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: theme.spacing.unit * 12,
     marginBottom: theme.spacing.unit * 2
@@ -35,32 +35,38 @@ const ShelfBoard = ({ name, items, activeUserBoard, addShelfBoardItem }) => {
   })
 
   return (
-    <BaseBoard>
-      <div>
-        {name}
-        <Button
-          variant="outlined"
-          color="secondary"
-          className={classes.root}
-          onClick={addShelfBoardItem}
-        >
-          <AddIcon />
-        </Button>
-      </div>
-      <div id="lottie" />
-      {items.map((item, index) => (
-        <BaseItem key={String(index)} self={item} activeUserBoard={activeUserBoard} />
-      ))}
-    </BaseBoard>
+    <div class="ShelfBoard">
+      <BaseBoard>
+        <div>
+          {name}
+          <Button
+            variant="outlined"
+            color="secondary"
+            className={classes.root}
+            onClick={addShelfBoardItem}
+          >
+            <AddIcon />
+          </Button>
+        </div>
+        <div id="lottie" />
+        {items.map((item, index) => (
+          <BaseItem
+            key={String(index)}
+            self={item}
+            activeUserBoard={activeUserBoard}
+          />
+        ))}
+      </BaseBoard>
+    </div>
   )
 }
 
-const mapState = storeState => {
-  const { name, items } = getActiveShelfBoard(storeState.shelfBoards)
+const mapState = (state) => {
+  const { name, items } = getActiveShelfBoard(state.shelfBoards)
   return {
     name,
     items,
-    activeUserBoard: getActiveUserBoard(storeState.userBoards)
+    activeUserBoard: getActiveUserBoard(state.userBoards)
   }
 }
 
