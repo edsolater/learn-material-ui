@@ -7,13 +7,16 @@ import { makeStyles } from '@material-ui/styles'
 import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import lottie from 'lottie-web'
+import styled from 'styled-components'
 
 import BaseBoard from './BaseUI/BaseBoard'
 import BaseItem from './BaseUI/BaseItem'
 import { addShelfBoardItem } from '../data/actionCreators'
 import { getActiveShelfBoard, getActiveUserBoard } from '../data/selectors'
 
-const useStyles = makeStyles((theme) => ({
+const Wrapper = styled.section``
+
+const useStyles = makeStyles(theme => ({
   root: {
     width: theme.spacing.unit * 12,
     marginBottom: theme.spacing.unit * 2
@@ -35,7 +38,7 @@ const ShelfBoard = ({ name, items, activeUserBoard, addShelfBoardItem }) => {
   })
 
   return (
-    <div class="ShelfBoard">
+    <Wrapper>
       <BaseBoard>
         <div>
           {name}
@@ -57,11 +60,11 @@ const ShelfBoard = ({ name, items, activeUserBoard, addShelfBoardItem }) => {
           />
         ))}
       </BaseBoard>
-    </div>
+    </Wrapper>
   )
 }
 
-const mapState = (state) => {
+const mapState = state => {
   const { name, items } = getActiveShelfBoard(state.shelfBoards)
   return {
     name,
