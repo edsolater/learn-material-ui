@@ -2,10 +2,15 @@ import React from 'react'
 import './externalMethod'
 import { Provider } from 'react-redux'
 
-import { ShopBar, Favorites, ShelfBoard, UserBoards, FloatingBall } from './components'
+import {
+  ShopBar,
+  Favorites,
+  ShelfBoard,
+  UserBoards,
+  FloatingBall
+} from './components'
 import store from './data/store'
 import MiniShopTheme from './config/material-ui-theme'
-
 
 export default () => {
   const [hasFavorites, toggleFavorites] = React.useToggle(false)
